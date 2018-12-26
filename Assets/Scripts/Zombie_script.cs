@@ -4,11 +4,13 @@ using UnityEngine;
 
 public class Zombie_script : MonoBehaviour {
     public GameObject enemy;
+    private GameObject player;
     private float startSpeed;
     //private Rigidbody rg;
     public float speed = 10f;
 	// Use this for initialization
 	void Start () {
+        player = GameObject.Find("Player");
         //Transform tr = GetComponent<enemy.>
         startSpeed = speed;
         //rg = GetComponent<Rigidbody>();
@@ -24,9 +26,11 @@ public class Zombie_script : MonoBehaviour {
 
     void FixedUpdate()
     {
-        transform.LookAt(new Vector3( enemy.transform.position.x, transform.position.y, enemy.transform.position.z));
-        transform.position = Vector3.MoveTowards(new Vector3(transform.position.x, transform.position.y, transform.position.z) , new Vector3(enemy.transform.position.x, transform.position.y, enemy.transform.position.z) , speed/100);
-        //transform.position = new Vector3
+        if (enemy) { 
+            transform.LookAt(new Vector3( enemy.transform.position.x, transform.position.y, enemy.transform.position.z));
+            transform.position = Vector3.MoveTowards(new Vector3(transform.position.x, transform.position.y, transform.position.z) , new Vector3(enemy.transform.position.x, transform.position.y, enemy.transform.position.z) , speed/100);
+            //transform.position = new Vector3
+        }
     }
 
     void OnCollisionEnter(Collision collision)
@@ -44,5 +48,33 @@ public class Zombie_script : MonoBehaviour {
         //if(collision.gameObject.CompareTag("Player")){
             speed = startSpeed;
         //}
+    }
+    void OnTriggerEnter(Collider other)
+    {
+        print("+");
+        if (other.gameObject.CompareTag("Player"))
+        {
+            
+            enemy = player;
+            //Zombie_script zomb = collision.gameObject;//GetComponent<collision.gameObject>();
+            //collision.fi
+            //speed = 0;
+        }
+        //speed = 0;
+        //collision.gameObject.CompareTag("bullet_Tag")
+    }
+    void OnTriggerExit(Collider other)
+    {
+        print("+");
+        //if (other.gameObject.CompareTag("Player"))
+        //{
+
+            enemy = null;
+            //Zombie_script zomb = collision.gameObject;//GetComponent<collision.gameObject>();
+            //collision.fi
+            //speed = 0;
+        //}
+        //speed = 0;
+        //collision.gameObject.CompareTag("bullet_Tag")
     }
 }

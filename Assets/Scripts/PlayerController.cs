@@ -43,4 +43,6 @@ public class PlayerController : MonoBehaviour {
             transform.LookAt(new Vector3(floorHit.point.x, transform.position.y, floorHit.point.z ));
         }
     }
+
+    
 }
