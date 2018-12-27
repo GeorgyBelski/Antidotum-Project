@@ -49,21 +49,68 @@ public class Zombie_script : MonoBehaviour {
             speed = startSpeed;
         //}
     }
-    void OnTriggerEnter(Collider other)
+    void OnTriggerStay(Collider other)
     {
-        print("+");
-        if (other.gameObject.CompareTag("Player"))
+        if (other.gameObject.CompareTag("Human"))
         {
-            
-            enemy = player;
-            //Zombie_script zomb = collision.gameObject;//GetComponent<collision.gameObject>();
-            //collision.fi
-            //speed = 0;
+            enemy = other.gameObject;
         }
-        //speed = 0;
-        //collision.gameObject.CompareTag("bullet_Tag")
+        else
+        {
+            if(!enemy)
+                enemy = other.gameObject;
+        }
+        
+        
+        
+       
     }
-    void OnTriggerExit(Collider other)
+    
+        /*void OnTriggerStay(Collider other)
+        {
+            print("+");
+            if (other.gameObject.CompareTag("Player") || other.gameObject.CompareTag("Human"))
+            {
+                if (other.gameObject.CompareTag("Human")) {
+                    enemy = GameObject.Find("Human");
+                }
+                else
+                {
+                    enemy = player;
+                }
+
+                //Zombie_script zomb = collision.gameObject;//GetComponent<collision.gameObject>();
+                //collision.fi
+                //speed = 0;
+            }
+
+            //speed = 0;
+            //collision.gameObject.CompareTag("bullet_Tag")
+        }
+        */
+
+        /*
+        void OnTriggerEnter(Collider other)
+        {
+    print("+");
+            if (other.gameObject.CompareTag("Player") || other.gameObject.CompareTag("Human"))
+            {
+                if (other.gameObject.CompareTag("Human"))
+                {
+                    enemy = GameObject.Find("Human");
+                }
+                else
+                {
+                    enemy = player;
+                }
+
+                //Zombie_script zomb = collision.gameObject;//GetComponent<collision.gameObject>();
+                //collision.fi
+                //speed = 0;
+            }
+        }
+        */
+        void OnTriggerExit(Collider other)
     {
         print("+");
         //if (other.gameObject.CompareTag("Player"))
