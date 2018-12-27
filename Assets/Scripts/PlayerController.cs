@@ -5,16 +5,18 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour {
     public float speed = 7f;
     public Transform coordinator;
-
+    public float animationDamping = 0.15f;
 
     // Rigidbody rb;
     public int floorMask;
     float camRayLength = 60f;
+    Animator animator;
 
     void Start ()
     {
         floorMask = LayerMask.GetMask("Floor");
-      //  rb = GetComponent<Rigidbody>();
+        //  rb = GetComponent<Rigidbody>();
+        animator = GetComponent<Animator>();
 
     }
 	
@@ -22,10 +24,16 @@ public class PlayerController : MonoBehaviour {
     {
         float h = Input.GetAxisRaw("Horizontal");
         float v = Input.GetAxisRaw("Vertical");
-
-           transform.position +=  coordinator.transform.rotation * new Vector3(h,0,v).normalized * speed * Time.deltaTime;
+        var inputAxisVector = new Vector3(h, 0, v);
+           transform.position +=  coordinator.transform.rotation * inputAxisVector.normalized * speed * Time.deltaTime;
         //  rb.velocity = coordinator.transform.rotation * new Vector3(h, 0, v).normalized * speed ;
         Turning();
+        if (animator != null) {
+            var angleHorizontalAxisVSPlayerForward = coordinator.transform.rotation * Quaternion.Inverse(transform.rotation);
+            var animatorDirection = angleHorizontalAxisVSPlayerForward * inputAxisVector;
+            animator.SetFloat("Right", animatorDirection.x, animationDamping, Time.deltaTime);
+            animator.SetFloat("Forward", animatorDirection.z, animationDamping, Time.deltaTime);
+        }
     }
 
     void Turning()
