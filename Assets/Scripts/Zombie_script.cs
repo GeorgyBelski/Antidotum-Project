@@ -39,6 +39,10 @@ public class Zombie_script : MonoBehaviour {
         {
             speed = 0;
         }
+        if (collision.gameObject.CompareTag("Bullet"))
+        {
+            Destroy(gameObject);
+        }
         //speed = 0;
         //collision.gameObject.CompareTag("bullet_Tag")
     }
