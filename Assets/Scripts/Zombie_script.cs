@@ -35,7 +35,7 @@ public class Zombie_script : MonoBehaviour {
 
     void OnCollisionEnter(Collision collision)
     {
-        if(collision.gameObject.CompareTag("Player") || collision.gameObject.CompareTag("Zombie"))
+        if(collision.gameObject.CompareTag("Player"))
         {
             speed = 0;
         }
