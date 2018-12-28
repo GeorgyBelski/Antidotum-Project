@@ -1,32 +1,62 @@
-﻿using System.Collections;
+﻿using Assets.Scripts;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class Test_Player : MonoBehaviour
 {
-    public GameObject bulletPrefab;
-    public float speed = 7f;
-    public Transform coordinator;
-    public float animationDamping = 0.15f;
+    private ShotGunFire s_Fire;
+    private int type = 1;
+    private float pistolShotRealTime;
+    private float shotGunShotRealTime;
 
-    // Rigidbody rb;
+    public float animationDamping = 0.15f;
+    public float pistolShotTime = 0.5f;
+    public float shotGunShotTime = 1f;
+    public float speed = 7f;
+
+    public Transform coordinator;
+    public GameObject bulletPrefab;
+    
     public int floorMask;
+    // Rigidbody rb;
+    
     float camRayLength = 60f;
     Animator animator;
 
     void Start()
     {
+        pistolShotRealTime = pistolShotTime;
+        shotGunShotRealTime = shotGunShotTime;
+        s_Fire = new ShotGunFire(this, bulletPrefab);
         floorMask = LayerMask.GetMask("Floor");
-        //  rb = GetComponent<Rigidbody>();
         animator = GetComponent<Animator>();
 
     }
 
     void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+        pistolShotRealTime -= Time.deltaTime;
+        shotGunShotRealTime -= Time.deltaTime;
+        if (Input.GetMouseButton(0))
         {
             fire();
+        }
+
+        if (Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            type = 1;
+            print(1);
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            type = 2;
+            //print(1);
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha3))
+        {
+            type = 3;
+            //print(1);
         }
     }
     void FixedUpdate()
@@ -65,7 +95,43 @@ public class Test_Player : MonoBehaviour
 
     void fire()
     {
-        Instantiate(bulletPrefab, new Vector3(this.transform.position.x, this.transform.position.y + 1, this.transform.position.z), this.transform.rotation, null);
+        switch (type)
+        {
+            case 1:
+                //pistolShotRealTime -= Time.deltaTime;
+                if(pistolShotRealTime < 0) { 
+                    Instantiate(bulletPrefab, new Vector3(
+                    this.transform.position.x, 
+                    this.transform.position.y + 1, this.transform.position.z), 
+                    this.transform.rotation, null
+                    );
+                    pistolShotRealTime = pistolShotTime;
+                }
+                break;
+            case 2:
+                if (shotGunShotRealTime < 0)
+                {
+                    s_Fire.fire(10);
+                    shotGunShotRealTime = shotGunShotTime;
+                }
+                break;
+            case 3:
+                Instantiate(bulletPrefab, new Vector3(
+                    this.transform.position.x,
+                    this.transform.position.y + 1, this.transform.position.z),
+                    this.transform.rotation, null
+                    );
+                break;
+            default:
+                Instantiate(bulletPrefab, new Vector3(
+                    this.transform.position.x,
+                    this.transform.position.y + 1, this.transform.position.z),
+                    this.transform.rotation, null
+                    );
+                break;
+
+        }
+        
     }
 
 }
