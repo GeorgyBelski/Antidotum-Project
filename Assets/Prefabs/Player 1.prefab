@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 954621463}
   - component: {fileID: 8805459911817346601}
   - component: {fileID: 954621465}
-  - component: {fileID: 954621462}
+  - component: {fileID: 1045111051}
   m_Layer: 0
-  m_Name: Player
+  m_Name: Player 1
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -65,9 +65,9 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 20.25
+  m_Radius: 25
   m_Center: {x: 0, y: 4.67, z: 0}
---- !u!114 &954621462
+--- !u!114 &1045111051
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -76,12 +76,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 954621461}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c5a0012d47ba74b44a6f3649607e6a29, type: 3}
+  m_Script: {fileID: 11500000, guid: e2926736890ebb149a2a0ee0dc334f3a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  animationDamping: 0.15
+  pistolShotTime: 0.3
+  shotGunShotTime: 0.8
   speed: 7
   coordinator: {fileID: 0}
-  animationDamping: 0.15
+  bulletPrefab: {fileID: 8872392990683123315, guid: 4122c7ab2b675774dbc678fe9621d7a8,
+    type: 3}
   floorMask: 0
 --- !u!1 &540193399540439305
 GameObject:

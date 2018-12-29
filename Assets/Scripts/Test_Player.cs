@@ -9,7 +9,9 @@ public class Test_Player : MonoBehaviour
     private int type = 1;
     private float pistolShotRealTime;
     private float shotGunShotRealTime;
+    private float smgShotRealTime;
 
+    public float smgShotTime = 0.15f;
     public float animationDamping = 0.15f;
     public float pistolShotTime = 0.5f;
     public float shotGunShotTime = 1f;
@@ -28,6 +30,7 @@ public class Test_Player : MonoBehaviour
     {
         pistolShotRealTime = pistolShotTime;
         shotGunShotRealTime = shotGunShotTime;
+        smgShotRealTime = smgShotTime;
         s_Fire = new ShotGunFire(this, bulletPrefab);
         floorMask = LayerMask.GetMask("Floor");
         animator = GetComponent<Animator>();
@@ -38,6 +41,7 @@ public class Test_Player : MonoBehaviour
     {
         pistolShotRealTime -= Time.deltaTime;
         shotGunShotRealTime -= Time.deltaTime;
+        smgShotRealTime -= Time.deltaTime;
         if (Input.GetMouseButton(0))
         {
             fire();
@@ -46,7 +50,7 @@ public class Test_Player : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
             type = 1;
-            print(1);
+            //print(1);
         }
         if (Input.GetKeyDown(KeyCode.Alpha2))
         {
@@ -116,11 +120,15 @@ public class Test_Player : MonoBehaviour
                 }
                 break;
             case 3:
-                Instantiate(bulletPrefab, new Vector3(
+                if (smgShotRealTime < 0)
+                {
+                    Instantiate(bulletPrefab, new Vector3(
                     this.transform.position.x,
                     this.transform.position.y + 1, this.transform.position.z),
                     this.transform.rotation, null
                     );
+                    smgShotRealTime = smgShotTime;
+                }
                 break;
             default:
                 Instantiate(bulletPrefab, new Vector3(
