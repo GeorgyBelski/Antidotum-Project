@@ -1,10 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Zombie_script : MonoBehaviour {
     public GameObject enemy;
     private GameObject player;
+    public Image helthBar;
     private float startSpeed;
     //private Rigidbody rg;
     public float speed = 10f;
@@ -41,7 +43,12 @@ public class Zombie_script : MonoBehaviour {
         }
         if (collision.gameObject.CompareTag("Bullet"))
         {
-            Destroy(gameObject);
+            helthBar.fillAmount -= 0.2f;
+            if (helthBar.fillAmount <= 0.01)
+            {
+                Destroy(gameObject);
+            }
+           
         }
         //speed = 0;
         //collision.gameObject.CompareTag("bullet_Tag")
