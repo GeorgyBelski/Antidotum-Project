@@ -392,7 +392,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8280b1166270ae84d8630dc0fc951618, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerTransform: {fileID: 0}
+  playerTransform: {fileID: 1045111055}
   FromPlaerToCamera: {x: 0, y: 0, z: 0}
   smoothing: 10
 --- !u!81 &1039962647
@@ -492,12 +492,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e2926736890ebb149a2a0ee0dc334f3a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bulletPrefab: {fileID: 8872392990683123315, guid: 4122c7ab2b675774dbc678fe9621d7a8,
-    type: 3}
+  smgShotTime: 0.15
+  animationDamping: 0.15
+  pistolShotTime: 0.5
+  shotGunShotTime: 1
   speed: 7
   coordinator: {fileID: 353362552}
-  animationDamping: 0.15
+  bulletPrefab: {fileID: 8872392990683123315, guid: 4122c7ab2b675774dbc678fe9621d7a8,
+    type: 3}
   floorMask: 0
+--- !u!4 &1045111055 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 954621463, guid: 3793818515a0c3c4cbec706cfe7a7639,
+    type: 3}
+  m_PrefabInstance: {fileID: 1219259967}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1219259967
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -565,6 +574,10 @@ PrefabInstance:
       propertyPath: coordinator
       value: 
       objectReference: {fileID: 353362552}
+    - target: {fileID: 1045111051, guid: 3793818515a0c3c4cbec706cfe7a7639, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 954621462, guid: 3793818515a0c3c4cbec706cfe7a7639, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 3793818515a0c3c4cbec706cfe7a7639, type: 3}

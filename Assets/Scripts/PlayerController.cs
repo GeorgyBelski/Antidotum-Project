@@ -4,13 +4,16 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour {
     public float speed = 7f;
-    public Transform coordinator;
+    
     public float animationDamping = 0.15f;
 
     // Rigidbody rb;
     public int floorMask;
     float camRayLength = 60f;
+
     Animator animator;
+    Vector3 moveDirection;
+    Quaternion coordinator;
 
     void Start ()
     {
@@ -25,11 +28,14 @@ public class PlayerController : MonoBehaviour {
         float h = Input.GetAxisRaw("Horizontal");
         float v = Input.GetAxisRaw("Vertical");
         var inputAxisVector = new Vector3(h, 0, v);
-           transform.position +=  coordinator.transform.rotation * inputAxisVector.normalized * speed * Time.deltaTime;
+        Quaternion cameraRotation = Camera.main.transform.rotation;
+        coordinator = new Quaternion(0f, cameraRotation.y, 0f, cameraRotation.w);
+        moveDirection = coordinator * inputAxisVector.normalized * speed * Time.deltaTime;
+        transform.position += moveDirection;
         //  rb.velocity = coordinator.transform.rotation * new Vector3(h, 0, v).normalized * speed ;
         Turning();
         if (animator != null) {
-            var angleHorizontalAxisVSPlayerForward = coordinator.transform.rotation * Quaternion.Inverse(transform.rotation);
+            var angleHorizontalAxisVSPlayerForward = coordinator * Quaternion.Inverse(transform.rotation);
             var animatorDirection = angleHorizontalAxisVSPlayerForward * inputAxisVector;
             animator.SetFloat("Right", animatorDirection.x, animationDamping, Time.deltaTime);
             animator.SetFloat("Forward", animatorDirection.z, animationDamping, Time.deltaTime);
@@ -51,6 +57,10 @@ public class PlayerController : MonoBehaviour {
             transform.LookAt(new Vector3(floorHit.point.x, transform.position.y, floorHit.point.z ));
         }
     }
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.cyan;
+        Gizmos.DrawLine(this.transform.position, this.transform.position + moveDirection * 18f);
+    }
 
-    
-}
+    }
