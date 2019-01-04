@@ -6,13 +6,17 @@ using UnityEngine.UI;
 public class Zombie_script1 : MonoBehaviour
 {
     public GameObject enemy;
-    private GameObject player;
     public Image helthBar;
-    private float startSpeed;
-    //private Rigidbody rg;
     public float speed = 10f;
     public bool attack = false;
-    // Use this for initialization
+
+    private GameObject player;
+    private float startSpeed;
+    ZombieAttributes zombieAttributes;
+
+
+
+
     void Start()
     {
         player = GameObject.Find("Player");
@@ -20,10 +24,9 @@ public class Zombie_script1 : MonoBehaviour
         startSpeed = speed;
         speed = 0f;
         //rg = GetComponent<Rigidbody>();
-
+        zombieAttributes = GetComponent<ZombieAttributes>();
     }
 
-    // Update is called once per frame
     void Update()
     {
 
@@ -51,8 +54,9 @@ public class Zombie_script1 : MonoBehaviour
         }
         if (collision.gameObject.CompareTag("Bullet"))
         {
-            helthBar.fillAmount -= 0.2f;
-            if (helthBar.fillAmount <= 0.01)
+          //  helthBar.fillAmount -= 0.2f;
+            zombieAttributes.health -= 20;
+            if (zombieAttributes.health <= 0)
             {
                 Destroy(gameObject);
             }
