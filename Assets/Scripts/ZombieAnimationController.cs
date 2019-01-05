@@ -5,11 +5,8 @@ using UnityEngine;
 
 public class ZombieAnimationController : MonoBehaviour
 {
-    public float zSpeed;
-
 
     Animator animator;
-    Vector3 velocity;
     Vector3 rootPosition;
     Zombie_script1 zScript;
     bool isMove = false;
@@ -19,7 +16,6 @@ public class ZombieAnimationController : MonoBehaviour
     {
         animator = GetComponent<Animator>();
         animator.SetFloat("speedMultiplier", Random.RandomRange(1f,2f));
-        velocity = transform.position;
         zScript = GetComponent<Zombie_script1>();
     }
 

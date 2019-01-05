@@ -16,7 +16,7 @@ public class ZombieDoDamage : MonoBehaviour
     }
 
     void Attack() {
-        if (zScript.enemy && zScript.distanceToTarget <= 1.2f) {
+        if (zScript.enemy && zScript.distanceToTarget <= 1.5f) {
             zScript.enemy.SendMessage("ApplyDamage", 10, SendMessageOptions.DontRequireReceiver);
         }
     }
