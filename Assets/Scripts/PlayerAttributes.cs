@@ -18,8 +18,9 @@ public class PlayerAttributes : MonoBehaviour
     public int bioAmount = 0;
     public int anidoreAmount = 0;
 
-    Image currentHealsBar;
-    Image currentBioBar;
+    public List<Image> BioBars;
+
+    Image currentHealsBar; 
     SphereCollider detectionSphere;
     int previousHealth;
     int previousBioAmount = -1;
@@ -29,7 +30,7 @@ public class PlayerAttributes : MonoBehaviour
         health = maxHealth;
         previousHealth = health;
         currentHealsBar = gameObject.transform.Find("Canvas_Health/Image_Health_Bar").GetComponent<Image>();
-        currentBioBar = gameObject.transform.Find("Canvas_Bio/Image_Bio_Bar").GetComponent<Image>();
+      //  currentBioBar = gameObject.transform.Find("Canvas_Bio/Image_Bio_Bar").GetComponent<Image>();
         detectionSphere = GetComponent<SphereCollider>();
         detectionSphere.radius = health + 20;
         currentHealsBar.rectTransform.localScale = new Vector3(1, 1, 1);
@@ -44,7 +45,9 @@ public class PlayerAttributes : MonoBehaviour
         }
         if (bioAmount != previousBioAmount) {
             float retioBio = (float)bioAmount / maxBioAmount;
-            currentBioBar.rectTransform.localScale = new Vector3(1, retioBio, 1);
+            foreach (Image currentBioBar in BioBars) { 
+                currentBioBar.rectTransform.localScale = new Vector3(1, retioBio, 1);
+            }
         }
     }
 
