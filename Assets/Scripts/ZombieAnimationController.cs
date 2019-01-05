@@ -8,12 +8,12 @@ public class ZombieAnimationController : MonoBehaviour
     public float zSpeed;
 
 
-
     Animator animator;
     Vector3 velocity;
     Vector3 rootPosition;
     Zombie_script1 zScript;
-    
+    bool isMove = false;
+    bool isAttack = false;
 
     void Start()
     {
@@ -32,12 +32,20 @@ public class ZombieAnimationController : MonoBehaviour
 
     void OnAnimatorMove()
     {
-        zSpeed = zScript.speed;
-        bool move = zScript.speed > 0.01f;
-        animator.SetBool("move", move);
+        if(isMove != zScript.move)
+        {
+            isMove = zScript.move;
+            animator.SetBool("move", isMove);
+        }
         // Update position based on animation movement using navigation surface height
         rootPosition = animator.rootPosition;
      //   position.y = agent.nextPosition.y;
         transform.position = rootPosition;
+
+        if (isAttack != zScript.attack)
+        {
+            isAttack = zScript.attack;
+            animator.SetBool("attack", isAttack);
+        }
     }
 }

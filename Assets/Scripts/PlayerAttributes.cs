@@ -33,4 +33,9 @@ public class PlayerAttributes : MonoBehaviour
             detectionSphere.radius = health + 20;
         }
     }
+
+    void ApplyDamage(int value) {
+        health -= value;
+    }
 }
+

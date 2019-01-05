@@ -7,13 +7,14 @@ public class Zombie_script1 : MonoBehaviour
 {
     public GameObject enemy;
     public Image helthBar;
-    public float speed = 10f;
     public bool attack = false;
+    public bool move =false;
+    public float distanceToTarget;
 
     private GameObject player;
     private float startSpeed;
     ZombieAttributes zombieAttributes;
-
+    
 
 
 
@@ -21,16 +22,14 @@ public class Zombie_script1 : MonoBehaviour
     {
         player = GameObject.Find("Player");
         //Transform tr = GetComponent<enemy.>
-        startSpeed = speed;
-        speed = 0f;
+
         //rg = GetComponent<Rigidbody>();
         zombieAttributes = GetComponent<ZombieAttributes>();
     }
 
     void Update()
     {
-
-
+        
     }
     //private float x_displacement, y_displacement;
 
@@ -38,9 +37,13 @@ public class Zombie_script1 : MonoBehaviour
     {
         if (enemy)
         {
+            distanceToTarget = (enemy.transform.position - this.transform.position).magnitude;
             transform.LookAt(new Vector3(enemy.transform.position.x, transform.position.y, enemy.transform.position.z));
-        //    transform.position = Vector3.MoveTowards(new Vector3(transform.position.x, transform.position.y, transform.position.z), new Vector3(enemy.transform.position.x, transform.position.y, enemy.transform.position.z), speed / 100);
+            //    transform.position = Vector3.MoveTowards(new Vector3(transform.position.x, transform.position.y, transform.position.z), new Vector3(enemy.transform.position.x, transform.position.y, enemy.transform.position.z), speed / 100);
             //transform.position = new Vector3
+        }
+        else {
+            distanceToTarget = float.PositiveInfinity;
         }
     }
 
@@ -49,8 +52,9 @@ public class Zombie_script1 : MonoBehaviour
         if (collision.gameObject.CompareTag("Player"))
         {
          //   Debug.Log("OnCollisionEnter");
-            speed = 0;
-            attack = true;
+
+         //   move = false;
+        //    attack = true;
         }
         if (collision.gameObject.CompareTag("Bullet"))
         {
@@ -69,13 +73,23 @@ public class Zombie_script1 : MonoBehaviour
     {
 
         //if(collision.gameObject.CompareTag("Player")){
-        attack = false;
+        
+       // if(distanceToTarget > 1f)
+       //     attack = false;
         //}
     }
     void OnTriggerStay(Collider other)
     {
-        if(!attack)
-            speed = startSpeed;
+        if (distanceToTarget > 1f)
+        {
+            attack = false;
+            move = true;
+        }
+        else
+        {
+            attack = true;
+            move = false;
+        }
         if (other.gameObject.CompareTag("Human"))
         {
             enemy = other.gameObject;
@@ -147,7 +161,7 @@ print("+");
         //collision.fi
         //speed = 0;
         //}
-        speed = 0;
+        move = false;
         //collision.gameObject.CompareTag("bullet_Tag")
     }
 }
