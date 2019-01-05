@@ -1075,6 +1075,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 06e11bf1a375bf843a658a9178810844, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  DropAfterDead: {fileID: 3247773139398580083, guid: f7259f7c8c996494ab6ffd640fd1b239,
+    type: 3}
   enemy: {fileID: 0}
   helthBar: {fileID: 73852808}
   attack: 0

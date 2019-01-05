@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class Zombie_script1 : MonoBehaviour
 {
+    public GameObject DropAfterDead;
     public GameObject enemy;
     public Image helthBar;
     public bool attack = false;
@@ -63,6 +64,7 @@ public class Zombie_script1 : MonoBehaviour
             if (zombieAttributes.health <= 0)
             {
                 Destroy(gameObject);
+                Instantiate(DropAfterDead, this.transform.position, this.transform.rotation, null);
             }
 
         }

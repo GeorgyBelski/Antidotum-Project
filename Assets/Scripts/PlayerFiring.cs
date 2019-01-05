@@ -18,7 +18,7 @@ public class PlayerFiring : MonoBehaviour
     void Update()
     {
         currentCoolDown -= Time.deltaTime;
-        if (currentCoolDown <=0 && Input.GetMouseButtonDown(0))
+        if (currentCoolDown <=0 && Input.GetMouseButton(0))
         {
             Fire();
             currentCoolDown = coolDown;

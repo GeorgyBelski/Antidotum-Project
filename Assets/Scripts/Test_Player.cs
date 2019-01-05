@@ -11,6 +11,7 @@ public class Test_Player : MonoBehaviour
     private float shotGunShotRealTime;
     private float smgShotRealTime;
 
+    public GameObject gun;
     public float smgShotTime = 0.15f;
     public float animationDamping = 0.15f;
     public float pistolShotTime = 0.5f;
@@ -105,9 +106,9 @@ public class Test_Player : MonoBehaviour
                 //pistolShotRealTime -= Time.deltaTime;
                 if(pistolShotRealTime < 0) { 
                     Instantiate(bulletPrefab, new Vector3(
-                    this.transform.position.x, 
-                    this.transform.position.y + 1, this.transform.position.z), 
-                    this.transform.rotation, null
+                    gun.transform.position.x,
+                    gun.transform.position.y, gun.transform.position.z),
+                    gun.transform.rotation, null
                     );
                     pistolShotRealTime = pistolShotTime;
                 }
@@ -123,18 +124,18 @@ public class Test_Player : MonoBehaviour
                 if (smgShotRealTime < 0)
                 {
                     Instantiate(bulletPrefab, new Vector3(
-                    this.transform.position.x,
-                    this.transform.position.y + 1, this.transform.position.z),
-                    this.transform.rotation, null
+                    gun.transform.position.x,
+                    gun.transform.position.y + 1, gun.transform.position.z),
+                    gun.transform.rotation, null
                     );
                     smgShotRealTime = smgShotTime;
                 }
                 break;
             default:
                 Instantiate(bulletPrefab, new Vector3(
-                    this.transform.position.x,
-                    this.transform.position.y + 1, this.transform.position.z),
-                    this.transform.rotation, null
+                    gun.transform.position.x,
+                    gun.transform.position.y + 1, gun.transform.position.z),
+                    gun.transform.rotation, null
                     );
                 break;
 

@@ -34,6 +34,18 @@ public class PlayerAttributes : MonoBehaviour
         }
     }
 
+    void OnCollisionEnter(Collision collision)
+    {
+        print("DNA");
+        if (collision.gameObject.CompareTag("DNA"))
+        {
+
+            //dna.text = "1";
+            Destroy(collision.gameObject);
+            //Destroy(gameObject);
+        }
+    }
+
     void ApplyDamage(int value) {
         health -= value;
     }
