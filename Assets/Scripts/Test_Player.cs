@@ -11,6 +11,8 @@ public class Test_Player : MonoBehaviour
     private float shotGunShotRealTime;
     private float smgShotRealTime;
 
+    public AudioClip fire_pistol;
+    private AudioSource audioSource;
     public GameObject gun;
     public float smgShotTime = 0.15f;
     public float animationDamping = 0.15f;
@@ -29,6 +31,7 @@ public class Test_Player : MonoBehaviour
 
     void Start()
     {
+        audioSource = GetComponent<AudioSource>();
         pistolShotRealTime = pistolShotTime;
         shotGunShotRealTime = shotGunShotTime;
         smgShotRealTime = smgShotTime;
@@ -110,6 +113,8 @@ public class Test_Player : MonoBehaviour
                     gun.transform.position.y, gun.transform.position.z),
                     gun.transform.rotation, null
                     );
+
+                    audioSource.PlayOneShot(fire_pistol, 0.7f);
                     pistolShotRealTime = pistolShotTime;
                 }
                 break;

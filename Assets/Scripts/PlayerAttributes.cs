@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+[RequireComponent(typeof(AudioSource))]
 public class PlayerAttributes : MonoBehaviour
 {
     [Range(10, 200)]
@@ -16,11 +17,10 @@ public class PlayerAttributes : MonoBehaviour
     [Range(10, 30)]
     public int maxBioAmount = 10;
     public int bioAmount = 0;
-    public int antidoteAmount = 0;
+    public int anidoreAmount = 0;
 
-    public List<Image> BioBars;
-
-    Image currentHealsBar; 
+    Image currentHealsBar;
+    Image currentBioBar;
     SphereCollider detectionSphere;
     int previousHealth;
     int previousBioAmount = -1;
@@ -30,7 +30,7 @@ public class PlayerAttributes : MonoBehaviour
         health = maxHealth;
         previousHealth = health;
         currentHealsBar = gameObject.transform.Find("Canvas_Health/Image_Health_Bar").GetComponent<Image>();
-      //  currentBioBar = gameObject.transform.Find("Canvas_Bio/Image_Bio_Bar").GetComponent<Image>();
+        currentBioBar = gameObject.transform.Find("Canvas_Bio/Image_Bio_Bar").GetComponent<Image>();
         detectionSphere = GetComponent<SphereCollider>();
         detectionSphere.radius = health + 20;
         currentHealsBar.rectTransform.localScale = new Vector3(1, 1, 1);
@@ -45,9 +45,7 @@ public class PlayerAttributes : MonoBehaviour
         }
         if (bioAmount != previousBioAmount) {
             float retioBio = (float)bioAmount / maxBioAmount;
-            foreach (Image currentBioBar in BioBars) { 
-                currentBioBar.rectTransform.localScale = new Vector3(1, retioBio, 1);
-            }
+            currentBioBar.rectTransform.localScale = new Vector3(1, retioBio, 1);
         }
     }
 

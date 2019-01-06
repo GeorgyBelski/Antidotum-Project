@@ -28,7 +28,7 @@ public class Test_Spawn_zombies : MonoBehaviour
                 case 1:
                     Instantiate(zombiePrefub, 
                         new Vector3(player.transform.position.x + 10, 
-                        0, 
+                        0.2f, 
                         player.transform.position.z + 10), 
                         new Quaternion(0, 0, 0, 0), 
                         null);
@@ -36,7 +36,7 @@ public class Test_Spawn_zombies : MonoBehaviour
                 case 2:
                     Instantiate(zombiePrefub,
                         new Vector3(player.transform.position.x + 10,
-                        0,
+                        0.2f,
                         player.transform.position.z - 10),
                         new Quaternion(0, 0, 0, 0),
                         null);
@@ -44,7 +44,7 @@ public class Test_Spawn_zombies : MonoBehaviour
                 case 3:
                     Instantiate(zombiePrefub,
                         new Vector3(player.transform.position.x - 10,
-                        0,
+                        0.2f,
                         player.transform.position.z - 10),
                         new Quaternion(0, 0, 0, 0),
                         null);
@@ -52,7 +52,7 @@ public class Test_Spawn_zombies : MonoBehaviour
                 case 4:
                     Instantiate(zombiePrefub,
                     new Vector3(player.transform.position.x - 10,
-                    0,
+                    0.2f,
                     player.transform.position.z + 10),
                     new Quaternion(0, 0, 0, 0),
                     null);
