@@ -1198,7 +1198,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerTransform: {fileID: 954621463}
   FromPlaerToCamera: {x: 0, y: 0, z: 0}
-  smoothing: 10
+  smoothing: 19.24
 --- !u!81 &1039962647
 AudioListener:
   m_ObjectHideFlags: 0
@@ -2073,16 +2073,6 @@ PrefabInstance:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 1039962648}
-    - target: {fileID: 6365064348544646477, guid: d63f8213c6953e44981104a36d2a8d46,
-        type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 0.013000011
-      objectReference: {fileID: 0}
-    - target: {fileID: 6365064348544646477, guid: d63f8213c6953e44981104a36d2a8d46,
-        type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d63f8213c6953e44981104a36d2a8d46, type: 3}
 --- !u!1001 &300639965760812386

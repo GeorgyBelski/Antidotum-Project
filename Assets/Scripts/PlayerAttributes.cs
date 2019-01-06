@@ -16,7 +16,7 @@ public class PlayerAttributes : MonoBehaviour
     [Range(10, 30)]
     public int maxBioAmount = 10;
     public int bioAmount = 0;
-    public int anidoreAmount = 0;
+    public int antidoteAmount = 0;
 
     public List<Image> BioBars;
 

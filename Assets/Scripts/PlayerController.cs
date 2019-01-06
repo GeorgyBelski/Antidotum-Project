@@ -7,7 +7,7 @@ public class PlayerController : MonoBehaviour {
     
     public float animationDamping = 0.15f;
 
-    // Rigidbody rb;
+    Rigidbody rb;
     public int floorMask;
     float camRayLength = 60f;
 
@@ -18,9 +18,9 @@ public class PlayerController : MonoBehaviour {
     void Start ()
     {
         floorMask = LayerMask.GetMask("Floor");
-        //  rb = GetComponent<Rigidbody>();
+        rb = GetComponent<Rigidbody>();
         animator = GetComponent<Animator>();
-
+        DefineCoordinator();
     }
 	
 	void FixedUpdate ()
@@ -28,11 +28,12 @@ public class PlayerController : MonoBehaviour {
         float h = Input.GetAxisRaw("Horizontal");
         float v = Input.GetAxisRaw("Vertical");
         var inputAxisVector = new Vector3(h, 0, v);
-        Quaternion cameraRotation = Camera.main.transform.rotation;
-        coordinator = new Quaternion(0f, cameraRotation.y, 0f, cameraRotation.w);
-        moveDirection = coordinator * inputAxisVector.normalized * speed * Time.deltaTime;
-        transform.position += moveDirection;
-        //  rb.velocity = coordinator.transform.rotation * new Vector3(h, 0, v).normalized * speed ;
+        
+     // moveDirection = coordinator * inputAxisVector.normalized * speed * Time.deltaTime;
+     // transform.position += moveDirection;
+        moveDirection = coordinator * inputAxisVector.normalized * speed;
+        rb.velocity = moveDirection;
+     // rb.AddForce(moveDirection, ForceMode.Impulse);
         Turning();
         if (animator != null) {
             var angleHorizontalAxisVSPlayerForward = coordinator * Quaternion.Inverse(transform.rotation);
@@ -42,6 +43,10 @@ public class PlayerController : MonoBehaviour {
         }
     }
 
+    void DefineCoordinator() {
+        Vector3 camersAngles = Camera.main.transform.eulerAngles;
+        coordinator = Quaternion.Euler(0, camersAngles.y, 0);
+    }
     void Turning()
     {
         Ray camRay = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -60,7 +65,7 @@ public class PlayerController : MonoBehaviour {
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.cyan;
-        Gizmos.DrawLine(this.transform.position, this.transform.position + moveDirection * 18f);
+        Gizmos.DrawLine(this.transform.position, this.transform.position + moveDirection * 1.1f);
     }
 
     }
