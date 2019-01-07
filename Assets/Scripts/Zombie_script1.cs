@@ -6,6 +6,8 @@ using UnityEngine.UI;
 public class Zombie_script1 : MonoBehaviour
 {
     public static int playerLayer = 10;
+    public static int antidotBulletLayer = 11;
+
 
     public GameObject DropAfterDead;
     public GameObject enemy;
@@ -17,7 +19,7 @@ public class Zombie_script1 : MonoBehaviour
     private GameObject player;
     private float startSpeed;
     ZombieAttributes zombieAttributes;
-    
+
     void Start()
     {
         player = GameObject.Find("Player");
@@ -26,7 +28,7 @@ public class Zombie_script1 : MonoBehaviour
 
     void Update()
     {
-        
+
     }
 
     void FixedUpdate()
@@ -57,6 +59,9 @@ public class Zombie_script1 : MonoBehaviour
                 Instantiate(DropAfterDead, this.transform.position, this.transform.rotation, null);
             }
 
+        }
+        if (collision.gameObject.layer == antidotBulletLayer) {
+            zombieAttributes.isCured = true;
         }
 
     }

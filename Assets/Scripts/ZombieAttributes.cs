@@ -14,8 +14,16 @@ public class ZombieAttributes : MonoBehaviour
     Image currentHealsBar;
     int previousHealth;
 
+    public bool isCured = false;
+    public Material curedMaterial;
+    public Renderer renderer;
+    bool chengeMaterial = false;
+
+
     void Start()
     {
+
+        renderer = gameObject.transform.Find("Personnage2").GetComponent<Renderer>();
         health = maxHealth;
         previousHealth = health;
         currentHealsBar = gameObject.transform.Find("Canvas_Health/Image_Health_Bar").GetComponent<Image>();
@@ -29,6 +37,13 @@ public class ZombieAttributes : MonoBehaviour
         {
             float retio = (float)health / maxHealth;
             currentHealsBar.rectTransform.localScale = new Vector3(retio, 1, 1);
+        }
+
+        if (isCured && !chengeMaterial)
+        {
+            renderer.sharedMaterial = curedMaterial;
+            chengeMaterial = true;
+            GetComponent< Zombie_script1 >().enabled = false;
         }
     }
 }

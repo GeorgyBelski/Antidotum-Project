@@ -46,7 +46,8 @@ public class PlayerAttributes : MonoBehaviour
         detectionSphere.radius = health + 20;
         currentHealsBar.rectTransform.localScale = new Vector3(1, 1, 1);
         AntidoteAmountText.text = "" + antidoteAmount;
-        
+        SetAntidoteCreationBars(0f);
+
     }
 
     void Update()
