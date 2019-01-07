@@ -15,7 +15,7 @@ public class ZombieAnimationController : MonoBehaviour
     void Start()
     {
         animator = GetComponent<Animator>();
-        animator.SetFloat("speedMultiplier", Random.RandomRange(1f,2f));
+        animator.SetFloat("speedMultiplier", Random.Range(1f,2f));
         zScript = GetComponent<Zombie_script1>();
     }
 
