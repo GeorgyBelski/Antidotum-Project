@@ -8,6 +8,7 @@ public class ZombieAnimationController : MonoBehaviour
 
     Animator animator;
     Vector3 rootPosition;
+    ZombieAttributes zAttributes;
     Zombie_script1 zScript;
     bool isMove = false;
     bool isAttack = false;
@@ -15,6 +16,7 @@ public class ZombieAnimationController : MonoBehaviour
     void Start()
     {
         animator = GetComponent<Animator>();
+        zAttributes = GetComponent<ZombieAttributes>();
         animator.SetFloat("speedMultiplier", Random.Range(1f,2f));
         zScript = GetComponent<Zombie_script1>();
     }
@@ -42,6 +44,11 @@ public class ZombieAnimationController : MonoBehaviour
         {
             isAttack = zScript.attack;
             animator.SetBool("attack", isAttack);
+        }
+
+        if (zAttributes.isCured)
+        {
+            animator.SetBool("isCured", true);
         }
     }
 }

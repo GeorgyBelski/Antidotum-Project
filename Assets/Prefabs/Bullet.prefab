@@ -92,8 +92,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1.1499999, y: 1.19, z: 2.078018}
-  m_Center: {x: 0, y: 0, z: -0.5090079}
+  m_Size: {x: 2.77, y: 2.52, z: 3.73}
+  m_Center: {x: 0, y: 0, z: -1.31}
 --- !u!54 &5648222764810174169
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -103,8 +103,8 @@ Rigidbody:
   m_GameObject: {fileID: 8872392990683123315}
   serializedVersion: 2
   m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
+  m_Drag: 1.28
+  m_AngularDrag: 0.86
   m_UseGravity: 0
   m_IsKinematic: 1
   m_Interpolate: 0
@@ -217,5 +217,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca52a20ab8b31a742b5d7e5582711480, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 100
+  speed: 80
   life_time: 1

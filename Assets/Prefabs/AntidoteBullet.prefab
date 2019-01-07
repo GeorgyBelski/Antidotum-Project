@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 5648222764810174169}
   - component: {fileID: 8872392990683123316}
   - component: {fileID: 8872392990683123317}
+  - component: {fileID: 2541160329054117921}
   m_Layer: 11
   m_Name: AntidoteBullet
   m_TagString: AntidoteBullet
@@ -30,7 +31,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8872392990683123315}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0.0961}
+  m_LocalPosition: {x: 0, y: 0, z: 0.1197}
   m_LocalScale: {x: 0.03, y: 0.03, z: 0.050321}
   m_Children: []
   m_Father: {fileID: 0}
@@ -92,8 +93,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 2.41, y: 1.96, z: 2.078018}
-  m_Center: {x: 0, y: 0, z: -0.5090079}
+  m_Size: {x: 2.41, y: 1.96, z: 0.67}
+  m_Center: {x: 0, y: 0, z: 0.05}
 --- !u!54 &5648222764810174169
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -221,10 +222,24 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8872392990683123315}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ca52a20ab8b31a742b5d7e5582711480, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 100
   life_time: 1
+--- !u!114 &2541160329054117921
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8872392990683123315}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 434723b4ac759f346bdfbba312e22cd0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 43.13
+  life_time: 2.66
