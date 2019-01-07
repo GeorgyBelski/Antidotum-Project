@@ -20,39 +20,50 @@ public class PlayerAttributes : MonoBehaviour
 
     public List<Image> BioBars;
     public List<Image> antidoteCreationBars;
+    public Text AntidoteAmountText;
+
     Image currentHealsBar;
+    Image antidoteImage;
     SphereCollider detectionSphere;
     int previousHealth;
     int previousBioAmount = -1;
+
     float antidoteCreationTime = 3f;
     float currentCreationTime = 0f;
-    bool antidoteCreationProcess = false;
+    [HideInInspector]
+    public bool antidoteCreationProcess = false;
+
+    public int count = 0;
 
     void Start()
     {
         health = maxHealth;
         previousHealth = health;
         currentHealsBar = gameObject.transform.Find("Canvas_Health/Image_Health_Bar").GetComponent<Image>();
+        antidoteImage = gameObject.transform.Find("Canvas_Bio/Image_Antidote").GetComponent<Image>();
+        antidoteImage.color = new Color(0.2f, 0.2f, 0.2f);
         detectionSphere = GetComponent<SphereCollider>();
         detectionSphere.radius = health + 20;
         currentHealsBar.rectTransform.localScale = new Vector3(1, 1, 1);
+        AntidoteAmountText.text = "" + antidoteAmount;
+        
     }
 
     void Update()
     {
+        
         if (health != previousHealth)
         {
+        //    currentHealsBar.color = new Color(0f,.5f+0.2f*Mathf.Sin(Time.time*12f),0f);
             float retioHealth = (float)health / maxHealth;
             currentHealsBar.rectTransform.localScale = new Vector3(retioHealth, 1, 1);
             detectionSphere.radius = health + 20;
+            previousHealth = health;
         }
         if (bioAmount != previousBioAmount)
         {
             float retioBio = (float)bioAmount / maxBioAmount;
-            foreach (Image currentBioBar in BioBars)
-            {
-                currentBioBar.rectTransform.localScale = new Vector3(1, retioBio, 1);
-            }
+            SetBioBars(retioBio);
         }
         if (antidoteCreationProcess)
         {
@@ -60,42 +71,45 @@ public class PlayerAttributes : MonoBehaviour
             if (currentCreationTime < antidoteCreationTime)
             {
                 currentCreationTime += Time.deltaTime;
-                float retioAnidote = currentCreationTime / antidoteCreationTime;
-                foreach (Image antidoteCreationBar in antidoteCreationBars)
-                {
-                    antidoteCreationBar.fillAmount = retioAnidote;
-                }
+                float creationAntidoteRetio = currentCreationTime / antidoteCreationTime;
+                SetAntidoteCreationBars(creationAntidoteRetio);
             }
             else
             {
-                antidoteCreationProcess = false;
-                currentCreationTime = 0f;
-                bioAmount = 0;
-                antidoteAmount++;
+                AddAntidote();
             }
         }
-        else {
-            foreach (Image antidoteCreationBar in antidoteCreationBars)
-            {
-                antidoteCreationBar.fillAmount = 0f;
-            }
+
+    }
+    void SetBioBars(float retioBio)
+    {
+        foreach (Image currentBioBar in BioBars)
+        {
+            currentBioBar.rectTransform.localScale =  new Vector3(1, retioBio, 1);
+        }
+        previousBioAmount = bioAmount;
+
+
+    }
+
+    void SetAntidoteCreationBars(float processRetio)
+    {
+        foreach (Image antidoteCreationBar in antidoteCreationBars)
+        {
+            antidoteCreationBar.fillAmount = processRetio;
         }
     }
 
-    void OnCollisionEnter(Collision collision)
+    void AddAntidote()
     {
-        //print("DNA");
-        if (!antidoteCreationProcess && collision.gameObject.CompareTag("DNA"))
-        {
-            Destroy(collision.gameObject);
-            bioAmount++;
-            if (bioAmount >= maxBioAmount)
-            {
-                antidoteCreationProcess = true;
-                
-            }
-
-        }
+        SetAntidoteCreationBars(0f);
+        antidoteCreationProcess = false;
+        currentCreationTime = 0f;
+        bioAmount = 0;
+        antidoteAmount++;
+        AntidoteAmountText.text = "" + antidoteAmount;
+        if(antidoteAmount == 1)
+            antidoteImage.color = Color.white;
     }
 
     void ApplyDamage(int value)

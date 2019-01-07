@@ -5,6 +5,8 @@ using UnityEngine.UI;
 
 public class Zombie_script1 : MonoBehaviour
 {
+    public static int playerLayer = 10;
+
     public GameObject DropAfterDead;
     public GameObject enemy;
     public Image helthBar;
@@ -74,16 +76,16 @@ public class Zombie_script1 : MonoBehaviour
             attack = true;
             move = false;
         }
-        if (other.gameObject.CompareTag("Human"))
+        if (other.gameObject.CompareTag("Human") || other.gameObject.layer == playerLayer)
         {
             enemy = other.gameObject;
 
         }
-        else
+      /*  else
         {
             if (!enemy)
                 enemy = other.gameObject;
-        }
+        }*/
     }
 
 
