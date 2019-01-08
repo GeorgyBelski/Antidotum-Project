@@ -8,12 +8,13 @@ public class Zombie_script1 : MonoBehaviour
     public static int playerLayer = 10;
     public static int antidotBulletLayer = 11;
 
-
+    public GameObject soundBox_dead;
     public GameObject DropAfterDead;
+    public GameObject DropAfterDeadItems;
     public GameObject enemy;
     public Image helthBar;
     public bool attack = false;
-    public bool move =false;
+    public bool move = false;
     public float distanceToTarget;
 
     private GameObject player;
@@ -38,7 +39,8 @@ public class Zombie_script1 : MonoBehaviour
             distanceToTarget = (enemy.transform.position - this.transform.position).magnitude;
             transform.LookAt(new Vector3(enemy.transform.position.x, transform.position.y, enemy.transform.position.z));
         }
-        else {
+        else
+        {
             distanceToTarget = float.PositiveInfinity;
         }
     }
@@ -51,19 +53,27 @@ public class Zombie_script1 : MonoBehaviour
         }
         if (collision.gameObject.CompareTag("Bullet"))
         {
-            Destroy(collision.gameObject);
-         //   zombieAttributes.ApplyDamage(20);
+
+            zombieAttributes.health -= 20;
+            zombieAttributes.getSound();
             if (zombieAttributes.health <= 0)
             {
-                Destroy(gameObject);
+                int index = Random.Range(0, 10);
+                if (index == 1)
+                {
+                    Instantiate(DropAfterDeadItems, this.transform.position, this.transform.rotation, null);
+                }
+                Instantiate(soundBox_dead, this.transform.position, this.transform.rotation, null);
                 Instantiate(DropAfterDead, this.transform.position, this.transform.rotation, null);
+                Destroy(gameObject);
+
+
             }
 
         }
-        if (!zombieAttributes.isCured && collision.gameObject.layer == antidotBulletLayer) {
-            Destroy(collision.gameObject);
+        if (collision.gameObject.layer == antidotBulletLayer)
+        {
             zombieAttributes.isCured = true;
-            
         }
 
     }
@@ -88,11 +98,11 @@ public class Zombie_script1 : MonoBehaviour
             enemy = other.gameObject;
 
         }
-      /*  else
-        {
-            if (!enemy)
-                enemy = other.gameObject;
-        }*/
+        /*  else
+          {
+              if (!enemy)
+                  enemy = other.gameObject;
+          }*/
     }
 
 
@@ -102,3 +112,4 @@ public class Zombie_script1 : MonoBehaviour
         move = false;
     }
 }
+

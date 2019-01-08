@@ -15,8 +15,18 @@ public class PlayerController : MonoBehaviour {
     Vector3 moveDirection;
     Quaternion coordinator;
 
+
+    public AudioClip leftStep;
+    public AudioClip rightStep;
+    private AudioSource audioSource;
+    private float stepTime = 0.3f;
+    private float realstepTime;
+    private bool rightstep = true;
+
     void Start ()
     {
+        realstepTime = stepTime;
+        audioSource = GetComponent<AudioSource>();
         floorMask = LayerMask.GetMask("Floor");
         rb = GetComponent<Rigidbody>();
         animator = GetComponent<Animator>();
@@ -28,9 +38,27 @@ public class PlayerController : MonoBehaviour {
         float h = Input.GetAxisRaw("Horizontal");
         float v = Input.GetAxisRaw("Vertical");
         var inputAxisVector = new Vector3(h, 0, v);
-        
-     // moveDirection = coordinator * inputAxisVector.normalized * speed * Time.deltaTime;
-     // transform.position += moveDirection;
+        realstepTime -= Time.deltaTime;
+        if (h != 0 || v != 0)
+        {
+            if (realstepTime < 0)
+            {
+                if (rightstep)
+                {
+                    audioSource.PlayOneShot(rightStep, 0.2f);
+                    rightstep = false;
+                }
+                else
+                {
+                    rightstep = true;
+                    audioSource.PlayOneShot(leftStep, 0.2f);
+                }
+                realstepTime = stepTime;
+            }
+            //audioSource.UnPause();
+        }
+        // moveDirection = coordinator * inputAxisVector.normalized * speed * Time.deltaTime;
+        // transform.position += moveDirection;
         moveDirection = coordinator * inputAxisVector.normalized * speed;
         rb.velocity = moveDirection;
      // rb.AddForce(moveDirection, ForceMode.Impulse);

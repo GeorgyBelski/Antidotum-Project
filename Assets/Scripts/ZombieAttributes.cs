@@ -14,14 +14,21 @@ public class ZombieAttributes : MonoBehaviour
     Image currentHealsBar;
     int previousHealth;
 
+    public AudioClip[] walkingSound;
+    public AudioClip zombieInPain;
+    //public AudioClip walkingSound2;
+    private AudioSource audioSource;
     public bool isCured = false;
     public Material curedMaterial;
     public Renderer renderer;
+    private float timeRangeToSound;
     bool chengeMaterial = false;
 
 
     void Start()
     {
+        timeRangeToSound = Random.Range(1f, 30f);
+        audioSource = GetComponent<AudioSource>();
 
         renderer = gameObject.transform.Find("Personnage2").GetComponent<Renderer>();
         health = maxHealth;
@@ -33,6 +40,13 @@ public class ZombieAttributes : MonoBehaviour
 
     void Update()
     {
+        timeRangeToSound -= Time.deltaTime;
+        if (timeRangeToSound < 0)
+        {
+            int index = Random.Range(0, walkingSound.Length);
+            audioSource.PlayOneShot(walkingSound[index], 0.3f);
+            timeRangeToSound = Random.Range(3f, 50f);
+        }
         if (health != previousHealth)
         {
             float retio = (float)health / maxHealth;
@@ -51,5 +65,15 @@ public class ZombieAttributes : MonoBehaviour
     public void ApplyDamage(int value)
     {
         health -= value;
+    }
+
+    public void getSound()
+    {
+        //print("+");
+        int index = Random.Range(1, 6);
+        if (index == 2)
+        {
+            audioSource.PlayOneShot(zombieInPain, 0.8f);
+        }
     }
 }

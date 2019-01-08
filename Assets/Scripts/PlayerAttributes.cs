@@ -116,6 +116,10 @@ public class PlayerAttributes : MonoBehaviour
     void ApplyDamage(int value)
     {
         health -= value;
+        if(health > maxHealth)
+        {
+            health = maxHealth;
+        }
     }
 }
 
