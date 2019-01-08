@@ -63,7 +63,7 @@ public class Test_zombie_atributes : MonoBehaviour
 
     public void getSound()
     {
-        print("+");
+        //print("+");
         int index = Random.Range(1, 6);
         if(index == 2)
         {

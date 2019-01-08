@@ -43,7 +43,7 @@ public class AntidoteBullet1 : MonoBehaviour
         }
         else
         {
-            if(!collision.gameObject.CompareTag("Player"))
+            if(!collision.gameObject.CompareTag("Player") && !collision.gameObject.CompareTag("Bullet"))
             //Destroy(gameObject);
             audioSource.PlayOneShot(wizzing, 0.3f);
         }
