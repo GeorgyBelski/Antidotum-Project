@@ -15,6 +15,7 @@ public class Test_zombie_atributes : MonoBehaviour
     int previousHealth;
 
     public AudioClip[] walkingSound;
+    public AudioClip zombieInPain;
     //public AudioClip walkingSound2;
     private AudioSource audioSource;
     public bool isCured = false;
@@ -47,6 +48,7 @@ public class Test_zombie_atributes : MonoBehaviour
         }
         if (health != previousHealth)
         {
+            
             float retio = (float)health / maxHealth;
             currentHealsBar.rectTransform.localScale = new Vector3(retio, 1, 1);
         }
@@ -56,6 +58,16 @@ public class Test_zombie_atributes : MonoBehaviour
             renderer.sharedMaterial = curedMaterial;
             chengeMaterial = true;
             GetComponent<Zombie_script>().enabled = false;
+        }
+    }
+
+    public void getSound()
+    {
+        print("+");
+        int index = Random.Range(1, 6);
+        if(index == 2)
+        {
+            audioSource.PlayOneShot(zombieInPain, 0.8f);
         }
     }
 }

@@ -105,7 +105,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 63480bcb4b2ba2546bda96ac809f8736, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  zombie_dead: {fileID: 8300000, guid: 882400f1f2cdb0549ace9f734adac00a, type: 3}
+  zombie_dead: {fileID: 8300000, guid: 0878bd7f4b86cc44d8f77416343c6ce8, type: 3}
   lifeTime: 2
 --- !u!82 &1086291806094314895
 AudioSource:

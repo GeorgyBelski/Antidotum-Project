@@ -54,6 +54,7 @@ public class Zombie_script : MonoBehaviour
         {
 
             zombieAttributes.health -= 20;
+            zombieAttributes.getSound();
             if (zombieAttributes.health <= 0)
             {
                 Instantiate(soundBox_dead, this.transform.position, this.transform.rotation, null);
