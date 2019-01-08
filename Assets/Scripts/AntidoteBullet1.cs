@@ -5,7 +5,8 @@ using UnityEngine;
 public class AntidoteBullet1 : MonoBehaviour
 {
     public static int floorLayer = 9;
-
+    public AudioClip wizzing;
+    private AudioSource audioSource;
     public float speed = 50f;
     public float life_time = 1.3f;
     Rigidbody rb;
@@ -13,6 +14,7 @@ public class AntidoteBullet1 : MonoBehaviour
 
     void Start()
     {
+        audioSource = GetComponent<AudioSource>();
         rb = GetComponent<Rigidbody>();
         rb.velocity = transform.forward * speed;
     }
@@ -37,7 +39,13 @@ public class AntidoteBullet1 : MonoBehaviour
         if(collision.gameObject.CompareTag("Zombie"))
         { 
             Destroy(gameObject);
-          //  Debug.Log("collision.gameObject.layer == floorLayer");
+            //  Debug.Log("collision.gameObject.layer == floorLayer");
+        }
+        else
+        {
+            if(!collision.gameObject.CompareTag("Player"))
+            //Destroy(gameObject);
+            audioSource.PlayOneShot(wizzing, 0.3f);
         }
     }
     
