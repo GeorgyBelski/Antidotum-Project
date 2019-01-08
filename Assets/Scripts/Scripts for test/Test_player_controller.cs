@@ -1,13 +1,23 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Test_player_controller : MonoBehaviour
 {
     public float speed = 7f;
 
-    public float animationDamping = 0.15f;
+    [Range(10, 200)]
+    public int maxHealth = 100;
 
+    [Range(0, 200)]
+    public int health;
+
+    SphereCollider detectionSphere;
+
+    public float animationDamping = 0.15f;
+    int previousHealth;
+    public Image currentHealsBar;
     public AudioClip leftStep;
     public AudioClip rightStep;
     private AudioSource audioSource;
@@ -30,6 +40,18 @@ public class Test_player_controller : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         animator = GetComponent<Animator>();
         DefineCoordinator();
+    }
+
+    void Update()
+    {
+        if (health != previousHealth)
+        {
+            //    currentHealsBar.color = new Color(0f,.5f+0.2f*Mathf.Sin(Time.time*12f),0f);
+            float retioHealth = (float)health / maxHealth;
+            currentHealsBar.rectTransform.localScale = new Vector3(retioHealth, 1, 1);
+            //detectionSphere.radius = health + 20;
+            previousHealth = health;
+        }
     }
 
     void FixedUpdate()
@@ -97,5 +119,12 @@ public class Test_player_controller : MonoBehaviour
         Gizmos.color = Color.cyan;
         Gizmos.DrawLine(this.transform.position, this.transform.position + moveDirection * 1.1f);
     }
-
+    void ApplyDamage(int value)
+    {
+        health -= value;
+        if(health > maxHealth)
+        {
+            health = maxHealth;
+        }
+    }
 }

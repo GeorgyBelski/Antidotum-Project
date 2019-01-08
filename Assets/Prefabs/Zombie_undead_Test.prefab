@@ -605,6 +605,8 @@ MonoBehaviour:
     type: 3}
   DropAfterDead: {fileID: 3247773139398580083, guid: f7259f7c8c996494ab6ffd640fd1b239,
     type: 3}
+  DropAfterDeadItems: {fileID: 5123888979911557221, guid: 4a07c6afec6ccbc47b6745d8e69f6e5c,
+    type: 3}
   enemy: {fileID: 0}
   helthBar: {fileID: 5853668079403816535}
   attack: 0
