@@ -9,7 +9,7 @@ public class AntidoteBullet1 : MonoBehaviour
     public float speed = 50f;
     public float life_time = 1.3f;
     Rigidbody rb;
-
+    bool hasCured = false;
 
     void Start()
     {
@@ -31,7 +31,7 @@ public class AntidoteBullet1 : MonoBehaviour
           
 
     }
-    
+  /*  
     void OnCollisionEnter(Collision collision)
     {
         if(collision.gameObject.CompareTag("Zombie"))
@@ -40,5 +40,5 @@ public class AntidoteBullet1 : MonoBehaviour
           //  Debug.Log("collision.gameObject.layer == floorLayer");
         }
     }
-    
+    */
 }

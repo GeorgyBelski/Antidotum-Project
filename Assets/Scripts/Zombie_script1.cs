@@ -51,8 +51,8 @@ public class Zombie_script1 : MonoBehaviour
         }
         if (collision.gameObject.CompareTag("Bullet"))
         {
-
-            zombieAttributes.health -= 20;
+            Destroy(collision.gameObject);
+         //   zombieAttributes.ApplyDamage(20);
             if (zombieAttributes.health <= 0)
             {
                 Destroy(gameObject);
@@ -60,8 +60,10 @@ public class Zombie_script1 : MonoBehaviour
             }
 
         }
-        if (collision.gameObject.layer == antidotBulletLayer) {
+        if (!zombieAttributes.isCured && collision.gameObject.layer == antidotBulletLayer) {
+            Destroy(collision.gameObject);
             zombieAttributes.isCured = true;
+            
         }
 
     }

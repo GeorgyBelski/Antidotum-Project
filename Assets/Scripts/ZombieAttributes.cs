@@ -46,4 +46,10 @@ public class ZombieAttributes : MonoBehaviour
             GetComponent< Zombie_script1 >().enabled = false;
         }
     }
+
+
+    public void ApplyDamage(int value)
+    {
+        health -= value;
+    }
 }

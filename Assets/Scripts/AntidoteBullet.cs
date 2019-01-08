@@ -8,13 +8,13 @@ public class AntidoteBullet : MonoBehaviour
 
     public float speed = 50f;
     public float life_time = 1.3f;
- //   Rigidbody rb;
-
+    Rigidbody rb;
+    bool hasCured = false;
 
     void Start()
     {
-      //  rb = GetComponent<Rigidbody>();
-     //   rb.velocity = transform.forward * speed;
+        rb = GetComponent<Rigidbody>();
+        rb.velocity = transform.forward * speed;
     }
     private void Update()
     {
@@ -27,18 +27,18 @@ public class AntidoteBullet : MonoBehaviour
     }
     void FixedUpdate()
     {
-        transform.position += transform.forward * speed * Time.deltaTime;
-          
+        //  transform.position += transform.forward * speed * Time.deltaTime;
+
 
     }
-  /*  
-    void OnCollisionEnter(Collision collision)
-    {
-        if(collision.gameObject.layer == floorLayer)
-        { 
-            Destroy(gameObject);
-            Debug.Log("collision.gameObject.layer == floorLayer");
-        }
-    }
-    */
+    /*  
+      void OnCollisionEnter(Collision collision)
+      {
+          if(collision.gameObject.CompareTag("Zombie"))
+          { 
+              Destroy(gameObject);
+            //  Debug.Log("collision.gameObject.layer == floorLayer");
+          }
+      }
+      */
 }
