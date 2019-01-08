@@ -9,6 +9,7 @@ TagManager:
   - Bullet
   - DNA
   - AntidoteBullet
+  - Heal Pack
   layers:
   - Default
   - TransparentFX
