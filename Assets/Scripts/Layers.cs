@@ -9,4 +9,7 @@ public class Layers
     public static int antidotBullet = 11;
     public static int zombie = 12;
     public static int bullet = 13;
+    public static int ground = 14;
+    public static int obstacle = 15;
+
 }

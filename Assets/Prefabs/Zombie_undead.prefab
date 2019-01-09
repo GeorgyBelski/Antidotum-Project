@@ -1119,7 +1119,6 @@ MonoBehaviour:
   zombieInPain: {fileID: 8300000, guid: 27f891269974b3e47bddbf88c073bc0d, type: 3}
   isCured: 0
   curedMaterial: {fileID: 2100000, guid: 54c87b46482e7b3469d018c268274bf4, type: 2}
-  renderer: {fileID: 0}
 --- !u!114 &5458390411576524668
 MonoBehaviour:
   m_ObjectHideFlags: 0

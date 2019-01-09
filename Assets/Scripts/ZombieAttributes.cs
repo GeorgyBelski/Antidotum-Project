@@ -24,7 +24,7 @@ public class ZombieAttributes : MonoBehaviour
     private AudioSource audioSource;
     public bool isCured = false;
     public Material curedMaterial;
-    public Renderer renderer;
+    Renderer renderer;
     private float timeRangeToSound;
     bool chengeMaterial = false;
 
@@ -55,6 +55,17 @@ public class ZombieAttributes : MonoBehaviour
         {
             float retio = (float)health / maxHealth;
             currentHealsBar.rectTransform.localScale = new Vector3(retio, 1, 1);
+            if (health <= 0)
+            {
+                int index = Random.Range(0, 10);
+                if (index == 1)
+                {
+                    Instantiate(DropAfterDeadItems, this.transform.position, this.transform.rotation, null);
+                }
+                Instantiate(soundBox_dead, this.transform.position, this.transform.rotation, null);
+                Instantiate(DropAfterDead, this.transform.position, this.transform.rotation, null);
+                Destroy(gameObject);
+            }
         }
 
         if (isCured && !chengeMaterial)
@@ -64,17 +75,7 @@ public class ZombieAttributes : MonoBehaviour
             GetComponent< Zombie_script1 >().enabled = false;
         }
 
-        if (health <= 0)
-        {
-            int index = Random.Range(0, 10);
-            if (index == 1)
-            {
-                Instantiate(DropAfterDeadItems, this.transform.position, this.transform.rotation, null);
-            }
-            Instantiate(soundBox_dead, this.transform.position, this.transform.rotation, null);
-            Instantiate(DropAfterDead, this.transform.position, this.transform.rotation, null);
-            Destroy(gameObject);
-        }
+        
     }
 
 

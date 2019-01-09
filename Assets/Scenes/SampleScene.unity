@@ -123,6 +123,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Zombie_undead (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 1438875000, guid: 908c65458c875054abbb848f309ec7bc, type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
     - target: {fileID: 1438875004, guid: 908c65458c875054abbb848f309ec7bc, type: 3}
       propertyPath: m_LocalPosition.x
       value: 5.05
@@ -569,6 +573,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Zombie_undead (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 1438875000, guid: 908c65458c875054abbb848f309ec7bc, type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
     - target: {fileID: 1438875004, guid: 908c65458c875054abbb848f309ec7bc, type: 3}
       propertyPath: m_LocalPosition.x
       value: 5.71
@@ -760,6 +768,10 @@ PrefabInstance:
     - target: {fileID: 1438875000, guid: 908c65458c875054abbb848f309ec7bc, type: 3}
       propertyPath: m_Name
       value: Zombie_undead (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1438875000, guid: 908c65458c875054abbb848f309ec7bc, type: 3}
+      propertyPath: m_Layer
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 1438875004, guid: 908c65458c875054abbb848f309ec7bc, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1246,7 +1258,7 @@ GameObject:
   - component: {fileID: 1338528177}
   - component: {fileID: 1338528176}
   - component: {fileID: 1338528175}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1335,6 +1347,10 @@ PrefabInstance:
     - target: {fileID: 1438875000, guid: 908c65458c875054abbb848f309ec7bc, type: 3}
       propertyPath: m_Name
       value: Zombie_undead (6)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1438875000, guid: 908c65458c875054abbb848f309ec7bc, type: 3}
+      propertyPath: m_Layer
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 1438875004, guid: 908c65458c875054abbb848f309ec7bc, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1541,6 +1557,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Zombie_undead (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 1438875000, guid: 908c65458c875054abbb848f309ec7bc, type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
     - target: {fileID: 1438875004, guid: 908c65458c875054abbb848f309ec7bc, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.86
@@ -1597,6 +1617,10 @@ PrefabInstance:
     - target: {fileID: 1438875000, guid: 908c65458c875054abbb848f309ec7bc, type: 3}
       propertyPath: m_Name
       value: Zombie_undead (5)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1438875000, guid: 908c65458c875054abbb848f309ec7bc, type: 3}
+      propertyPath: m_Layer
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 1438875004, guid: 908c65458c875054abbb848f309ec7bc, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1746,6 +1770,11 @@ PrefabInstance:
     - target: {fileID: 1810806976, guid: d63f8213c6953e44981104a36d2a8d46, type: 3}
       propertyPath: m_Enabled
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1195707337347821132, guid: d63f8213c6953e44981104a36d2a8d46,
+        type: 3}
+      propertyPath: maxBioAmount
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d63f8213c6953e44981104a36d2a8d46, type: 3}

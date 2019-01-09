@@ -37,10 +37,15 @@ public class AntidoteBullet1 : MonoBehaviour
    
     void OnCollisionEnter(Collision collision)
     {
-      //  Debug.Log(collision.gameObject);
+        //  Debug.Log(collision.gameObject);
+        if (collision.gameObject.layer == Layers.obstacle)
+        {
             rb.useGravity = true;
             rb.velocity *= 0.4f;
-
+        }
+        else if (collision.gameObject.layer == Layers.zombie) {
+            Destroy(gameObject);
+        }
         //    Destroy(gameObject);
         /*   if(collision.gameObject.CompareTag("Zombie"))
           { 

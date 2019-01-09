@@ -56,7 +56,8 @@ public class PlayerShooting : MonoBehaviour
         reloadPistolTimeLeft = reloadPistolTime;
         realPistolBulletInClip = pistolBulletInClip;
         audioSource = GetComponent<AudioSource>();
-        shootableMask = LayerMask.GetMask("Zombie");
+        shootableMask = LayerMask.GetMask("Obstacle");
+        shootableMask |= LayerMask.GetMask("Zombie");
         gunLine = GetComponent<LineRenderer>();
     }
 
@@ -148,7 +149,8 @@ public class PlayerShooting : MonoBehaviour
     }
 
 
-    void MakeShootRay() {
+    void MakeShootRay()
+    {
         gunLine.enabled = true;
         gunLine.SetPosition(0, gun.transform.position);
         shootRay.origin = gun.transform.position;
