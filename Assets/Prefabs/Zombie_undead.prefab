@@ -1076,12 +1076,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 06e11bf1a375bf843a658a9178810844, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  soundBox_dead: {fileID: 667993456749207985, guid: 88be87b4e3427c64390c07db14906acc,
-    type: 3}
-  DropAfterDead: {fileID: 3247773139398580083, guid: f7259f7c8c996494ab6ffd640fd1b239,
-    type: 3}
-  DropAfterDeadItems: {fileID: 5123888979911557221, guid: 4a07c6afec6ccbc47b6745d8e69f6e5c,
-    type: 3}
   enemy: {fileID: 0}
   helthBar: {fileID: 73852808}
   attack: 0
@@ -1113,6 +1107,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 100
   health: 0
+  soundBox_dead: {fileID: 667993456749207985, guid: 88be87b4e3427c64390c07db14906acc,
+    type: 3}
+  DropAfterDead: {fileID: 3247773139398580083, guid: f7259f7c8c996494ab6ffd640fd1b239,
+    type: 3}
+  DropAfterDeadItems: {fileID: 5123888979911557221, guid: 4a07c6afec6ccbc47b6745d8e69f6e5c,
+    type: 3}
   walkingSound:
   - {fileID: 8300000, guid: 210e6527731273c4294c8240bbb27afc, type: 3}
   - {fileID: 8300000, guid: 411dd416fc9216b49bc7fe86bf468b30, type: 3}
@@ -1145,7 +1145,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.501
   m_Pitch: 1
   Loop: 0
   Mute: 0

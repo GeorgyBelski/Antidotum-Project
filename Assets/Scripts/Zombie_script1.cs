@@ -5,20 +5,20 @@ using UnityEngine.UI;
 
 public class Zombie_script1 : MonoBehaviour
 {
-    public static int playerLayer = 10;
-    public static int antidotBulletLayer = 11;
 
+
+  /*  
     public GameObject soundBox_dead;
     public GameObject DropAfterDead;
     public GameObject DropAfterDeadItems;
+    */
     public GameObject enemy;
     public Image helthBar;
     public bool attack = false;
     public bool move = false;
     public float distanceToTarget;
 
-    private GameObject player;
-    private float startSpeed;
+    GameObject player;
     ZombieAttributes zombieAttributes;
 
     void Start()
@@ -47,33 +47,18 @@ public class Zombie_script1 : MonoBehaviour
 
     void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.CompareTag("Player"))
+        if (collision.gameObject.layer == Layers.bullet)
         {
-
-        }
-        if (collision.gameObject.CompareTag("Bullet"))
-        {
-
-            zombieAttributes.health -= 20;
+            Destroy(collision.gameObject);
+         //   zombieAttributes.health -= 20;
             zombieAttributes.getSound();
-            if (zombieAttributes.health <= 0)
-            {
-                int index = Random.Range(0, 10);
-                if (index == 1)
-                {
-                    Instantiate(DropAfterDeadItems, this.transform.position, this.transform.rotation, null);
-                }
-                Instantiate(soundBox_dead, this.transform.position, this.transform.rotation, null);
-                Instantiate(DropAfterDead, this.transform.position, this.transform.rotation, null);
-                Destroy(gameObject);
-
-
-            }
+            
 
         }
-        if (collision.gameObject.layer == antidotBulletLayer)
+        if (collision.gameObject.layer == Layers.antidotBullet)
         {
             zombieAttributes.isCured = true;
+            Destroy(collision.gameObject);
         }
 
     }
@@ -93,16 +78,12 @@ public class Zombie_script1 : MonoBehaviour
             attack = true;
             move = false;
         }
-        if (other.gameObject.CompareTag("Human") || other.gameObject.layer == playerLayer)
+        if (other.gameObject.CompareTag("Human") || other.gameObject.layer == Layers.player)
         {
             enemy = other.gameObject;
 
         }
-        /*  else
-          {
-              if (!enemy)
-                  enemy = other.gameObject;
-          }*/
+
     }
 
 

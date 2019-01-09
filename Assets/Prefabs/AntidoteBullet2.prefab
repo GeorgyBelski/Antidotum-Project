@@ -122,8 +122,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0aaf1056eeec3ce4582cb57ecc1c0867, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 16.54
-  life_time: 3.53
+  wizzing: {fileID: 0}
+  speed: 20
+  life_time: 1.5
 --- !u!96 &5313425146774231213
 TrailRenderer:
   serializedVersion: 2

@@ -43,7 +43,7 @@ public class Test_Player_Firing : MonoBehaviour
     {
         reloadRifleTimeLeft = reloadRifleTime;
         realRifleBulletInClip = rifleBulletInClip;
-        rifle = new Rifle_Fire(gun.transform, bulletPrefab);
+        rifle = new Rifle_Fire(gun.transform, this.transform, bulletPrefab);
         reloadPistolTimeLeft = reloadPistolTime;
         realPistolBulletInClip = pistolBulletInClip;
         pistolBulletAmmount.text = realPistolBulletInClip + "/-" ;

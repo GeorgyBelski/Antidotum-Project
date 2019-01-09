@@ -14,6 +14,10 @@ public class ZombieAttributes : MonoBehaviour
     Image currentHealsBar;
     int previousHealth;
 
+    public GameObject soundBox_dead;
+    public GameObject DropAfterDead;
+    public GameObject DropAfterDeadItems;
+
     public AudioClip[] walkingSound;
     public AudioClip zombieInPain;
     //public AudioClip walkingSound2;
@@ -58,6 +62,18 @@ public class ZombieAttributes : MonoBehaviour
             renderer.sharedMaterial = curedMaterial;
             chengeMaterial = true;
             GetComponent< Zombie_script1 >().enabled = false;
+        }
+
+        if (health <= 0)
+        {
+            int index = Random.Range(0, 10);
+            if (index == 1)
+            {
+                Instantiate(DropAfterDeadItems, this.transform.position, this.transform.rotation, null);
+            }
+            Instantiate(soundBox_dead, this.transform.position, this.transform.rotation, null);
+            Instantiate(DropAfterDead, this.transform.position, this.transform.rotation, null);
+            Destroy(gameObject);
         }
     }
 

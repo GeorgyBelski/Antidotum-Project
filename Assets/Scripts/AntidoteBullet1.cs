@@ -17,6 +17,7 @@ public class AntidoteBullet1 : MonoBehaviour
         audioSource = GetComponent<AudioSource>();
         rb = GetComponent<Rigidbody>();
         rb.velocity = transform.forward * speed;
+        rb.useGravity = false;
     }
     private void Update()
     {
@@ -33,20 +34,25 @@ public class AntidoteBullet1 : MonoBehaviour
           
 
     }
-  /*  
+   
     void OnCollisionEnter(Collision collision)
     {
-        if(collision.gameObject.CompareTag("Zombie"))
-        { 
-            Destroy(gameObject);
-            //  Debug.Log("collision.gameObject.layer == floorLayer");
-        }
-        else
-        {
-            if(!collision.gameObject.CompareTag("Player") && !collision.gameObject.CompareTag("Bullet"))
-            //Destroy(gameObject);
-            audioSource.PlayOneShot(wizzing, 0.3f);
-        }
+      //  Debug.Log(collision.gameObject);
+            rb.useGravity = true;
+            rb.velocity *= 0.4f;
+
+        //    Destroy(gameObject);
+        /*   if(collision.gameObject.CompareTag("Zombie"))
+          { 
+              Destroy(gameObject);
+              //  Debug.Log("collision.gameObject.layer == floorLayer");
+          }
+          else
+          {
+              if(!collision.gameObject.CompareTag("Player") && !collision.gameObject.CompareTag("Bullet"))
+              //Destroy(gameObject);
+              audioSource.PlayOneShot(wizzing, 0.3f);
+          }*/
     }
-    */
+    
 }

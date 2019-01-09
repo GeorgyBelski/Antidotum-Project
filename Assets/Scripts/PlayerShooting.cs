@@ -16,6 +16,8 @@ public class PlayerShooting : MonoBehaviour
     private float reloadRifleTimeLeft;
     private float realRifleBulletInClip;
 
+    public float range = 12f;
+
     private int type = 1;
 
     private Rifle_Fire rifle;
@@ -32,7 +34,7 @@ public class PlayerShooting : MonoBehaviour
     public GameObject antidoteBulletPrefab;
 
     float coolDown = 0.3f;
-    float timerCoolDown = 0f;
+    public float timerCoolDown = 0f;
 
     float pistolcoolDown = 0.3f;
     float pistolcurrentCoolDown = 0f;
@@ -44,13 +46,13 @@ public class PlayerShooting : MonoBehaviour
     RaycastHit shootHit;
     int shootableMask;
     LineRenderer gunLine;
-    float effectDisplayTime = 0.5f;
-    float range = 10f;
+    float effectDisplayTime = 0.6f;
+    
     void Start()
     {
         reloadRifleTimeLeft = reloadRifleTime;
         realRifleBulletInClip = rifleBulletInClip;
-        rifle = new Rifle_Fire(gun.transform, bulletPrefab);
+        rifle = new Rifle_Fire(gun.transform, this.transform, bulletPrefab);
         reloadPistolTimeLeft = reloadPistolTime;
         realPistolBulletInClip = pistolBulletInClip;
         audioSource = GetComponent<AudioSource>();
@@ -66,7 +68,7 @@ public class PlayerShooting : MonoBehaviour
         if (Input.GetMouseButton(0))
         {
             Fire();
-
+            
 
         }
 
@@ -75,7 +77,7 @@ public class PlayerShooting : MonoBehaviour
             AntidoteFire();
             timerCoolDown = coolDown;
         }
-        if (timerCoolDown <= coolDown * effectDisplayTime)
+        if (timerCoolDown < coolDown * effectDisplayTime)
         {
             DisableEffect();
         }
@@ -110,6 +112,7 @@ public class PlayerShooting : MonoBehaviour
             case 1:
                 if (pistolcurrentCoolDown <= 0)
                 {
+                    timerCoolDown = coolDown;
                     realPistolBulletInClip -= 1;
                     audioSource.PlayOneShot(fire_pistol, 0.25f);
                     pistolcurrentCoolDown = pistolcoolDown;
@@ -118,32 +121,15 @@ public class PlayerShooting : MonoBehaviour
                         reload();
                     }
 
-                    Instantiate(bulletPrefab, new Vector3(gun.transform.position.x, gun.transform.position.y, gun.transform.position.z), this.transform.rotation);
+                    Instantiate(bulletPrefab,gun.transform.position, this.transform.rotation);
 
-                    gunLine.enabled = true;
-                    gunLine.SetPosition(0, gun.transform.position);
-                    shootRay.origin = gun.transform.position;
-                    shootRay.direction = transform.forward;
-                    if (Physics.Raycast(shootRay, out shootHit, range, shootableMask))
-                    {
-                        ZombieAttributes zAttributes = shootHit.collider.GetComponent<ZombieAttributes>();
-                        if (zAttributes)
-                        {
-                            int damage = 20;
-                            zAttributes.ApplyDamage(damage);
-                        }
-                        gunLine.SetPosition(1, shootHit.point);
-
-                    }
-                    else
-                    {
-                        gunLine.SetPosition(1, shootRay.origin + shootRay.direction * range);
-                    }
+                    MakeShootRay();
                 }
                 break;
             case 2:
                 if (riflecurrentCoolDown <= 0)
                 {
+                    timerCoolDown = coolDown;
                     realRifleBulletInClip -= 1;
                     rifle.fire();
                     audioSource.PlayOneShot(fire_rifle, 0.3f);
@@ -153,30 +139,36 @@ public class PlayerShooting : MonoBehaviour
                         reloadRifle();
                     }
 
-                    //Instantiate(bulletPrefab, new Vector3(gun.transform.position.x, gun.transform.position.y, gun.transform.position.z), this.transform.rotation);
+                    //Instantiate(bulletPrefab, gun.transform.position, this.transform.rotation);
+                    MakeShootRay();
 
-                    gunLine.enabled = true;
-                    gunLine.SetPosition(0, gun.transform.position);
-                    shootRay.origin = gun.transform.position;
-                    shootRay.direction = transform.forward;
-                    if (Physics.Raycast(shootRay, out shootHit, range, shootableMask))
-                    {
-                        ZombieAttributes zAttributes = shootHit.collider.GetComponent<ZombieAttributes>();
-                        if (zAttributes)
-                        {
-                            int damage = 20;
-                            zAttributes.ApplyDamage(damage);
-                        }
-                        gunLine.SetPosition(1, shootHit.point);
-
-                    }
-                    else
-                    {
-                        gunLine.SetPosition(1, shootRay.origin + shootRay.direction * range);
-                    }
                 }
                 break;
         }
+    }
+
+
+    void MakeShootRay() {
+        gunLine.enabled = true;
+        gunLine.SetPosition(0, gun.transform.position);
+        shootRay.origin = gun.transform.position;
+        shootRay.direction = transform.forward;
+        if (Physics.Raycast(shootRay, out shootHit, range, shootableMask))
+        {
+            ZombieAttributes zAttributes = shootHit.collider.GetComponent<ZombieAttributes>();
+            if (zAttributes)
+            {
+                int damage = 20;
+                zAttributes.ApplyDamage(damage);
+            }
+            gunLine.SetPosition(1, shootHit.point);
+
+        }
+        else
+        {
+            gunLine.SetPosition(1, shootRay.origin + shootRay.direction * range);
+        }
+
     }
     void reload()
     {
