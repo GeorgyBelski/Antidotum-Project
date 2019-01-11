@@ -16,18 +16,26 @@ public class Zombie_script1 : MonoBehaviour
     ZombieAttributes zombieAttributes;
     List<ZombieAttributes> humanList;
     PlayerAttributes playerAttributes;
-    public List<float> ratios;
+    int triggerCount = 0;
+    int reactionTime = 50;
+    int reaction;
+    int reactionTimer = 0;
+    // List<float> ratios;
     void Start()
     {
         player = GameObject.Find("Player");
         playerAttributes = player.GetComponent<PlayerAttributes>();
         zombieAttributes = GetComponent<ZombieAttributes>();
         humanList = HumanManager.humanList;
+        reaction = Random.Range(0, reactionTime);
     }
 
     void Update()
     {
-
+        if (reactionTimer < reactionTime)
+            reactionTimer++;
+        else
+            reactionTimer = 0;
     }
 
     void FixedUpdate()
@@ -64,7 +72,16 @@ public class Zombie_script1 : MonoBehaviour
         }
 
     }
-
+    private void OnTriggerEnter(Collider other)
+    {
+        triggerCount++;
+    }
+    private void OnTriggerExit(Collider other)
+    {
+        enemy = null;
+        move = false;
+        triggerCount--;
+    }
     void OnTriggerStay(Collider other)
     {
         if (distanceToTarget > 1f)
@@ -78,9 +95,9 @@ public class Zombie_script1 : MonoBehaviour
             move = false;
         }
 
-        if (other.gameObject.layer == Layers.human || other.gameObject.layer == Layers.player)
+        if ((other.gameObject.layer == Layers.human || other.gameObject.layer == Layers.player) && reactionTimer == reaction)
         {
-            if (humanList.Count == 0)
+            if (triggerCount == 1)
             { 
                 enemy = other.gameObject;
             }
@@ -93,39 +110,40 @@ public class Zombie_script1 : MonoBehaviour
     GameObject DefineTarget()
     {
         float maxHealthRatio = playerAttributes.healthRatio;
-        int indexOfTarget = -1; 
+        float distanceToPlayer = (gameObject.transform.position - player.transform.position).magnitude;
+        float maxBaitCoefficient = playerAttributes.healthRatio / distanceToPlayer;
+        float humanBaitCoefficient = 0;
+        int indexOfTarget = -1;
         for (int i = 0; i < humanList.Count; i++)
         {
-            if (ratios.Count < i + 1)
-            {
-                ratios.Add(humanList[i].healthRatio);
-            }
-            else {
-                ratios[i] = humanList[i].healthRatio;
-            }
-            
-            if (humanList[i].healthRatio >= maxHealthRatio) {
-                maxHealthRatio = humanList[i].healthRatio;
-                indexOfTarget = i;
+            /*   if (ratios.Count < i + 1)
+               {
+                   ratios.Add(humanList[i].healthRatio);
+               }
+               else {
+                   ratios[i] = humanList[i].healthRatio;
+               }*/
+            if (humanList[i]) { 
+                float distance = (gameObject.transform.position - humanList[i].transform.position).magnitude;
+                humanBaitCoefficient = humanList[i].healthRatio / distance;
+                if (humanBaitCoefficient >= maxBaitCoefficient) {
+                    maxBaitCoefficient = humanBaitCoefficient;
+                    indexOfTarget = i;
+                }
             }
         }
-        if (ratios.Count < humanList.Count + 1)
+    /*    if (ratios.Count < humanList.Count + 1)
         {
             ratios.Add(playerAttributes.healthRatio);
         }
         else {
             ratios[ratios.Count - 1] = playerAttributes.healthRatio;
-        }
+        }*/
         if (indexOfTarget != -1)
             return humanList[indexOfTarget].gameObject;
         else
             return player;
     }
 
-    void OnTriggerExit(Collider other)
-    {
-        enemy = null;
-        move = false;
-    }
 }
 

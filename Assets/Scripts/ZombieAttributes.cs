@@ -85,11 +85,11 @@ public class ZombieAttributes : MonoBehaviour
         isCured = true;
         renderer.sharedMaterial = curedMaterial;
         chengeMaterial = true;
-     /*   var sc = gameObject.AddComponent<SphereCollider>();
+        var sc = gameObject.AddComponent<SphereCollider>();
         sc.center += new Vector3(0f,5f,0f);
         sc.radius = 16f;
         sc.isTrigger = true;
-     */
+     
         gameObject.layer = Layers.human;
         HumanManager.humanList.Add(this);
     }
