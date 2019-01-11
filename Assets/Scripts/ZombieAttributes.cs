@@ -66,18 +66,13 @@ public class ZombieAttributes : MonoBehaviour
                 Instantiate(DropAfterDead, this.transform.position, this.transform.rotation, null);
                 Destroy(gameObject);
             }
-        }
-
-        if (isCured && !chengeMaterial)
-        {
-            renderer.sharedMaterial = curedMaterial;
-            chengeMaterial = true;
-            GetComponent< Zombie_script1 >().enabled = false;
-        }
-
-        
+        }       
     }
-
+    public void Recover() {
+        isCured = true;
+        renderer.sharedMaterial = curedMaterial;
+        chengeMaterial = true;
+    }
 
     public void ApplyDamage(int value)
     {
@@ -86,7 +81,6 @@ public class ZombieAttributes : MonoBehaviour
 
     public void getSound()
     {
-        //print("+");
         int index = Random.Range(1, 6);
         if (index == 2)
         {

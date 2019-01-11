@@ -5,13 +5,6 @@ using UnityEngine.UI;
 
 public class Zombie_script1 : MonoBehaviour
 {
-
-
-  /*  
-    public GameObject soundBox_dead;
-    public GameObject DropAfterDead;
-    public GameObject DropAfterDeadItems;
-    */
     public GameObject enemy;
     public Image helthBar;
     public bool attack = false;
@@ -50,22 +43,17 @@ public class Zombie_script1 : MonoBehaviour
         if (collision.gameObject.layer == Layers.bullet)
         {
             Destroy(collision.gameObject);
-         //   zombieAttributes.health -= 20;
             zombieAttributes.getSound();
-            
-
         }
         if (collision.gameObject.layer == Layers.antidotBullet)
         {
-            zombieAttributes.isCured = true;
             Destroy(collision.gameObject);
+            zombieAttributes.Recover();
+            this.enabled = false;
         }
 
     }
-    void OnCollisionExit(Collision collision)
-    {
 
-    }
     void OnTriggerStay(Collider other)
     {
         if (distanceToTarget > 1f)
@@ -81,9 +69,7 @@ public class Zombie_script1 : MonoBehaviour
         if (other.gameObject.CompareTag("Human") || other.gameObject.layer == Layers.player)
         {
             enemy = other.gameObject;
-
         }
-
     }
 
 
