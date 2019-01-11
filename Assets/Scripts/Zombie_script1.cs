@@ -20,7 +20,7 @@ public class Zombie_script1 : MonoBehaviour
     int reactionTime = 50;
     int reaction;
     int reactionTimer = 0;
-    // List<float> ratios;
+
     void Start()
     {
         player = GameObject.Find("Player");
@@ -116,13 +116,6 @@ public class Zombie_script1 : MonoBehaviour
         int indexOfTarget = -1;
         for (int i = 0; i < humanList.Count; i++)
         {
-            /*   if (ratios.Count < i + 1)
-               {
-                   ratios.Add(humanList[i].healthRatio);
-               }
-               else {
-                   ratios[i] = humanList[i].healthRatio;
-               }*/
             if (humanList[i]) { 
                 float distance = (gameObject.transform.position - humanList[i].transform.position).magnitude;
                 humanBaitCoefficient = humanList[i].healthRatio / distance;
@@ -132,13 +125,6 @@ public class Zombie_script1 : MonoBehaviour
                 }
             }
         }
-    /*    if (ratios.Count < humanList.Count + 1)
-        {
-            ratios.Add(playerAttributes.healthRatio);
-        }
-        else {
-            ratios[ratios.Count - 1] = playerAttributes.healthRatio;
-        }*/
         if (indexOfTarget != -1)
             return humanList[indexOfTarget].gameObject;
         else

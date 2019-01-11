@@ -82,16 +82,19 @@ public class ZombieAttributes : MonoBehaviour
     }
     */
     public void Recover() {
-        isCured = true;
-        renderer.sharedMaterial = curedMaterial;
-        chengeMaterial = true;
-        var sc = gameObject.AddComponent<SphereCollider>();
-        sc.center += new Vector3(0f,5f,0f);
-        sc.radius = 16f;
-        sc.isTrigger = true;
+        if (!isCured) {
+            isCured = true;
+            renderer.sharedMaterial = curedMaterial;
+            chengeMaterial = true;
+            var sc = gameObject.AddComponent<SphereCollider>();
+            sc.center += new Vector3(0f,5f,0f);
+            sc.radius = 16f;
+            sc.isTrigger = true;
      
-        gameObject.layer = Layers.human;
-        HumanManager.humanList.Add(this);
+            gameObject.layer = Layers.human;
+            currentHealsBar.color = new Color(0.25f,0.6f,0.8f);
+            HumanManager.humanList.Add(this);
+        }
     }
 
     public void ApplyDamage(int value)
