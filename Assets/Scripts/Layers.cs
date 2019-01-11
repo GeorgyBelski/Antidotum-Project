@@ -11,5 +11,6 @@ public class Layers
     public static int bullet = 13;
     public static int ground = 14;
     public static int obstacle = 15;
+    public static int human = 16;
 
 }

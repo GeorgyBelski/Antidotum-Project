@@ -10,7 +10,7 @@ public class PlayerAttributes : MonoBehaviour
 
     [Range(0, 200)]
     public int health;
-
+    public float healthRatio;
     [Space]
 
     [Range(1, 30)]
@@ -21,6 +21,7 @@ public class PlayerAttributes : MonoBehaviour
     public List<Image> BioBars;
     public List<Image> antidoteCreationBars;
     public Text AntidoteAmountText;
+    
 
     Image currentHealsBar;
     Image antidoteImage;
@@ -47,6 +48,7 @@ public class PlayerAttributes : MonoBehaviour
         currentHealsBar.rectTransform.localScale = new Vector3(1, 1, 1);
         AntidoteAmountText.text = "" + antidoteAmount;
         SetAntidoteCreationBars(0f);
+        healthRatio = 1f;
 
     }
 
@@ -56,8 +58,8 @@ public class PlayerAttributes : MonoBehaviour
         if (health != previousHealth)
         {
         //    currentHealsBar.color = new Color(0f,.5f+0.2f*Mathf.Sin(Time.time*12f),0f);
-            float retioHealth = (float)health / maxHealth;
-            currentHealsBar.rectTransform.localScale = new Vector3(retioHealth, 1, 1);
+            healthRatio = (float)health / maxHealth;
+            currentHealsBar.rectTransform.localScale = new Vector3(healthRatio, 1, 1);
             detectionSphere.radius = health + 20;
             previousHealth = health;
         }

@@ -10,7 +10,6 @@ public class AntidoteBullet1 : MonoBehaviour
     public float speed = 50f;
     public float life_time = 1.3f;
     Rigidbody rb;
-    bool hasCured = false;
 
     void Start()
     {

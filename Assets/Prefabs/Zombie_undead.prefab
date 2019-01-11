@@ -1081,6 +1081,7 @@ MonoBehaviour:
   attack: 0
   move: 0
   distanceToTarget: 0
+  rotationSpeed: 3
 --- !u!114 &1438875002
 MonoBehaviour:
   m_ObjectHideFlags: 0

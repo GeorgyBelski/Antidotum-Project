@@ -12,6 +12,7 @@ public class ZombieAttributes : MonoBehaviour
     public int health;
 
     Image currentHealsBar;
+    public float healthRatio;
     int previousHealth;
 
     public GameObject soundBox_dead;
@@ -24,6 +25,7 @@ public class ZombieAttributes : MonoBehaviour
     private AudioSource audioSource;
     public bool isCured = false;
     public Material curedMaterial;
+    
     Renderer renderer;
     private float timeRangeToSound;
     bool chengeMaterial = false;
@@ -39,7 +41,7 @@ public class ZombieAttributes : MonoBehaviour
         previousHealth = health;
         currentHealsBar = gameObject.transform.Find("Canvas_Health/Image_Health_Bar").GetComponent<Image>();
         currentHealsBar.rectTransform.localScale = new Vector3(1, 1, 1);
-
+        healthRatio = 1f;
     }
 
     void Update()
@@ -53,10 +55,11 @@ public class ZombieAttributes : MonoBehaviour
         }
         if (health != previousHealth)
         {
-            float retio = (float)health / maxHealth;
-            currentHealsBar.rectTransform.localScale = new Vector3(retio, 1, 1);
+            healthRatio = (float)health / maxHealth;
+            currentHealsBar.rectTransform.localScale = new Vector3(healthRatio, 1, 1);
             if (health <= 0)
             {
+                HumanManager.humanList.Remove(this);
                 int index = Random.Range(0, 10);
                 if (index == 1)
                 {
@@ -68,10 +71,27 @@ public class ZombieAttributes : MonoBehaviour
             }
         }       
     }
+    /*
+    void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.layer == Layers.bullet)
+        {
+            Destroy(collision.gameObject);
+            getSound();
+        }
+    }
+    */
     public void Recover() {
         isCured = true;
         renderer.sharedMaterial = curedMaterial;
         chengeMaterial = true;
+     /*   var sc = gameObject.AddComponent<SphereCollider>();
+        sc.center += new Vector3(0f,5f,0f);
+        sc.radius = 16f;
+        sc.isTrigger = true;
+     */
+        gameObject.layer = Layers.human;
+        HumanManager.humanList.Add(this);
     }
 
     public void ApplyDamage(int value)

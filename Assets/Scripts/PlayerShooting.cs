@@ -58,6 +58,7 @@ public class PlayerShooting : MonoBehaviour
         audioSource = GetComponent<AudioSource>();
         shootableMask = LayerMask.GetMask("Obstacle");
         shootableMask |= LayerMask.GetMask("Zombie");
+        shootableMask |= LayerMask.GetMask("Human");
         gunLine = GetComponent<LineRenderer>();
     }
 
@@ -69,7 +70,6 @@ public class PlayerShooting : MonoBehaviour
         if (Input.GetMouseButton(0))
         {
             Fire();
-            
 
         }
 
@@ -86,12 +86,10 @@ public class PlayerShooting : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
             type = 1;
-            print(1);
         }
         if (Input.GetKeyDown(KeyCode.Alpha2))
         {
             type = 2;
-            print(2);
         }
     }
 
