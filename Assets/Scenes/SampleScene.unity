@@ -701,6 +701,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: AntidoteBullet
       objectReference: {fileID: 0}
+    - target: {fileID: 8872392990683123315, guid: 1dc84d62ad73ebf41aea25b050083eab,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5126051690018032628, guid: 1dc84d62ad73ebf41aea25b050083eab,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1727,55 +1732,6 @@ PrefabInstance:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 1039962648}
-    - target: {fileID: 541686643, guid: d63f8213c6953e44981104a36d2a8d46, type: 3}
-      propertyPath: range
-      value: 13
-      objectReference: {fileID: 0}
-    - target: {fileID: 634860867, guid: d63f8213c6953e44981104a36d2a8d46, type: 3}
-      propertyPath: m_Parameters.widthCurve.m_Curve.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 634860867, guid: d63f8213c6953e44981104a36d2a8d46, type: 3}
-      propertyPath: m_Parameters.widthCurve.m_Curve.Array.data[0].value
-      value: 0.03845024
-      objectReference: {fileID: 0}
-    - target: {fileID: 634860867, guid: d63f8213c6953e44981104a36d2a8d46, type: 3}
-      propertyPath: m_Parameters.widthCurve.m_Curve.Array.data[0].time
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 634860867, guid: d63f8213c6953e44981104a36d2a8d46, type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 065c894311dba3644b5f048a873f0628, type: 2}
-    - target: {fileID: 634860867, guid: d63f8213c6953e44981104a36d2a8d46, type: 3}
-      propertyPath: m_Parameters.widthCurve.m_Curve.Array.data[1].time
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 634860867, guid: d63f8213c6953e44981104a36d2a8d46, type: 3}
-      propertyPath: m_Parameters.widthCurve.m_Curve.Array.data[1].value
-      value: 0.022126198
-      objectReference: {fileID: 0}
-    - target: {fileID: 634860867, guid: d63f8213c6953e44981104a36d2a8d46, type: 3}
-      propertyPath: m_ReceiveShadows
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 634860867, guid: d63f8213c6953e44981104a36d2a8d46, type: 3}
-      propertyPath: m_CastShadows
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1662614251, guid: d63f8213c6953e44981104a36d2a8d46, type: 3}
-      propertyPath: m_Volume
-      value: 0.318
-      objectReference: {fileID: 0}
-    - target: {fileID: 1810806976, guid: d63f8213c6953e44981104a36d2a8d46, type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1195707337347821132, guid: d63f8213c6953e44981104a36d2a8d46,
-        type: 3}
-      propertyPath: maxBioAmount
-      value: 10
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d63f8213c6953e44981104a36d2a8d46, type: 3}
 --- !u!1001 &300639965760812386
@@ -1863,6 +1819,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: AntidoteBullet2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5313425146774231204, guid: c07c400528de0d547a8618714e8b333a,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5313425146774231210, guid: c07c400528de0d547a8618714e8b333a,
         type: 3}

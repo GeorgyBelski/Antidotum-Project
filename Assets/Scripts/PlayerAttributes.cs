@@ -115,6 +115,16 @@ public class PlayerAttributes : MonoBehaviour
             antidoteImage.color = Color.white;
     }
 
+    public void RemoveAntidote() {
+        if(antidoteAmount > 0)
+        {
+            antidoteAmount--;
+            AntidoteAmountText.text = "" + antidoteAmount;
+            if (antidoteAmount == 0)
+                antidoteImage.color = new Color(0.3f, 0.3f, 0.3f);
+        }   
+    }
+
     void ApplyDamage(int value)
     {
         health -= value;

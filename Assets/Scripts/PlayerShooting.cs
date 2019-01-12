@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerShooting : MonoBehaviour
 {
@@ -33,6 +34,9 @@ public class PlayerShooting : MonoBehaviour
     public GameObject bulletPrefab;
     public GameObject antidoteBulletPrefab;
 
+    public Text pistolBulletAmmount;
+    public Text rifleBulletAmmount;
+
     float coolDown = 0.3f;
     public float timerCoolDown = 0f;
 
@@ -47,7 +51,9 @@ public class PlayerShooting : MonoBehaviour
     int shootableMask;
     LineRenderer gunLine;
     float effectDisplayTime = 0.6f;
-    
+    PlayerAttributes pAttributes;
+
+
     void Start()
     {
         reloadRifleTimeLeft = reloadRifleTime;
@@ -60,6 +66,7 @@ public class PlayerShooting : MonoBehaviour
         shootableMask |= LayerMask.GetMask("Zombie");
         shootableMask |= LayerMask.GetMask("Human");
         gunLine = GetComponent<LineRenderer>();
+        pAttributes = GetComponent<PlayerAttributes>();
     }
 
     void Update()
@@ -75,8 +82,11 @@ public class PlayerShooting : MonoBehaviour
 
         if (timerCoolDown <= 0 && Input.GetMouseButton(1))
         {
-            AntidoteFire();
-            timerCoolDown = coolDown;
+            if (pAttributes.antidoteAmount > 0) {
+                AntidoteFire();
+                pAttributes.RemoveAntidote();
+                timerCoolDown = coolDown;
+            }     
         }
         if (timerCoolDown < coolDown * effectDisplayTime)
         {
@@ -111,8 +121,10 @@ public class PlayerShooting : MonoBehaviour
             case 1:
                 if (pistolcurrentCoolDown <= 0)
                 {
+                    
                     timerCoolDown = coolDown;
                     realPistolBulletInClip -= 1;
+                    pistolBulletAmmount.text = realPistolBulletInClip + "/-";
                     audioSource.PlayOneShot(fire_pistol, 0.25f);
                     pistolcurrentCoolDown = pistolcoolDown;
                     if (realPistolBulletInClip == 0)
@@ -128,8 +140,10 @@ public class PlayerShooting : MonoBehaviour
             case 2:
                 if (riflecurrentCoolDown <= 0)
                 {
+                    
                     timerCoolDown = coolDown;
                     realRifleBulletInClip -= 1;
+                    rifleBulletAmmount.text = realRifleBulletInClip + "/-";
                     rifle.fire();
                     audioSource.PlayOneShot(fire_rifle, 0.3f);
                     riflecurrentCoolDown = riflecoolDown;
@@ -178,6 +192,7 @@ public class PlayerShooting : MonoBehaviour
         reloadPistolTimeLeft -= Time.deltaTime;
         if (reloadPistolTimeLeft <= 0)
         {
+            pistolBulletAmmount.text = realPistolBulletInClip + "/-";
             reloadPistolTimeLeft = reloadPistolTime;
         }
     }
@@ -189,6 +204,7 @@ public class PlayerShooting : MonoBehaviour
         reloadRifleTimeLeft -= Time.deltaTime;
         if (reloadRifleTimeLeft <= 0)
         {
+            rifleBulletAmmount.text = realRifleBulletInClip + "/-";
             reloadRifleTimeLeft = reloadRifleTime;
         }
     }
