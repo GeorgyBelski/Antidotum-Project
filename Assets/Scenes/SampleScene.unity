@@ -1732,6 +1732,31 @@ PrefabInstance:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 1039962648}
+    - target: {fileID: 1195707337347821132, guid: d63f8213c6953e44981104a36d2a8d46,
+        type: 3}
+      propertyPath: maxBioAmount
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 530945549, guid: d63f8213c6953e44981104a36d2a8d46, type: 3}
+      propertyPath: m_MatchWidthOrHeight
+      value: 0.753
+      objectReference: {fileID: 0}
+    - target: {fileID: 1379412795, guid: d63f8213c6953e44981104a36d2a8d46, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1379412795, guid: d63f8213c6953e44981104a36d2a8d46, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1379412795, guid: d63f8213c6953e44981104a36d2a8d46, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 106
+      objectReference: {fileID: 0}
+    - target: {fileID: 1379412795, guid: d63f8213c6953e44981104a36d2a8d46, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d63f8213c6953e44981104a36d2a8d46, type: 3}
 --- !u!1001 &300639965760812386
