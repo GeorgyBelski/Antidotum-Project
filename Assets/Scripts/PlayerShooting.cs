@@ -1,4 +1,4 @@
-﻿using System;
+﻿//using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -76,6 +76,7 @@ public class PlayerShooting : MonoBehaviour
         riflecurrentCoolDown -= Time.deltaTime;
         if (Input.GetMouseButton(0))
         {
+            audioSource.pitch = Random.Range(0.9f, 1.1f);
             Fire();
 
         }

@@ -45,11 +45,13 @@ public class PlayerController : MonoBehaviour {
             {
                 if (rightstep)
                 {
+                    audioSource.pitch = Random.Range(0.9f, 1.1f);
                     audioSource.PlayOneShot(rightStep, 0.2f);
                     rightstep = false;
                 }
                 else
                 {
+                    audioSource.pitch = Random.Range(0.9f, 1.1f);
                     rightstep = true;
                     audioSource.PlayOneShot(leftStep, 0.2f);
                 }

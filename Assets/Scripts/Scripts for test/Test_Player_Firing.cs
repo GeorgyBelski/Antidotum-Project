@@ -128,7 +128,7 @@ public class Test_Player_Firing : MonoBehaviour
         realPistolBulletInClip = pistolBulletInClip;
         audioSource.PlayOneShot(reload_pistol, 0.7f);
         reloadPistolTimeLeft -= Time.deltaTime;
-        if(reloadPistolTimeLeft <= 0)
+        if(reloadPistolTimeLeft <= 0.01)
         {
             pistolBulletAmmount.text = realPistolBulletInClip + "/-";
             reloadPistolTimeLeft = reloadPistolTime;
