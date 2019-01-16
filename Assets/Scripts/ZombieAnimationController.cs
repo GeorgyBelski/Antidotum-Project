@@ -12,12 +12,14 @@ public class ZombieAnimationController : MonoBehaviour
     Zombie_script1 zScript;
     bool isMove = false;
     bool isAttack = false;
+    bool hasCured = false;
+    bool isInjured = false;
 
     void Start()
     {
         animator = GetComponent<Animator>();
         zAttributes = GetComponent<ZombieAttributes>();
-        animator.SetFloat("speedMultiplier", Random.Range(1f,2f));
+        animator.SetFloat("speedMultiplier", Random.Range(1f,1.8f));
         zScript = GetComponent<Zombie_script1>();
     }
 
@@ -46,9 +48,15 @@ public class ZombieAnimationController : MonoBehaviour
             animator.SetBool("attack", isAttack);
         }
 
-        if (zAttributes.isCured)
+        if (!hasCured && zAttributes.isCured)
         {
-            animator.SetBool("isCured", true);
+            hasCured = true;
+            animator.SetBool("isCured", hasCured);
+        }
+        if(!isInjured && zAttributes.isInjured)
+        {
+            isInjured = true;
+            animator.SetBool("isInjured", isInjured);
         }
     }
 }

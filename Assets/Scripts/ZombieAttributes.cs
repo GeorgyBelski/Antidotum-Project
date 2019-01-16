@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class ZombieAttributes : MonoBehaviour
+public class ZombieAttributes : MonoBehaviour, IDamageable
 {
     [Range(10, 100)]
     public int maxHealth = 100;
@@ -12,7 +12,7 @@ public class ZombieAttributes : MonoBehaviour
     public int health;
 
     Image currentHealsBar;
-    public float healthRatio;
+    float healthRatio;
     int previousHealth;
 
     public GameObject soundBox_dead;
@@ -24,11 +24,13 @@ public class ZombieAttributes : MonoBehaviour
     //public AudioClip walkingSound2;
     private AudioSource audioSource;
     public bool isCured = false;
+    public bool isInjured = false;
     public Material curedMaterial;
     
-    Renderer renderer;
+    new Renderer renderer;
     private float timeRangeToSound;
     bool chengeMaterial = false;
+    
 
 
     void Start()
@@ -55,6 +57,7 @@ public class ZombieAttributes : MonoBehaviour
         }
         if (health != previousHealth)
         {
+            isInjured = true;
             healthRatio = (float)health / maxHealth;
             currentHealsBar.rectTransform.localScale = new Vector3(healthRatio, 1, 1);
             if (health <= 0)
@@ -109,5 +112,15 @@ public class ZombieAttributes : MonoBehaviour
         {
             audioSource.PlayOneShot(zombieInPain, 0.8f);
         }
+    }
+
+    public float GetHealthRatio()
+    {
+        return healthRatio;
+    }
+
+    public Vector3 GetPosition()
+    {
+        return this.transform.position;
     }
 }

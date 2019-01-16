@@ -20,7 +20,7 @@ public class Test_zombie_atributes : MonoBehaviour
     private AudioSource audioSource;
     public bool isCured = false;
     public Material curedMaterial;
-    public Renderer renderer;
+    public new Renderer renderer;
     private float timeRangeToSound;
     bool chengeMaterial = false;
 

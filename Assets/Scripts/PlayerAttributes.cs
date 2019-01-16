@@ -3,14 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class PlayerAttributes : MonoBehaviour
+public class PlayerAttributes : MonoBehaviour, IDamageable
 {
     [Range(10, 200)]
     public int maxHealth = 100;
 
     [Range(0, 200)]
     public int health;
-    public float healthRatio;
+    float healthRatio;
     [Space]
 
     [Range(1, 30)]
@@ -125,13 +125,23 @@ public class PlayerAttributes : MonoBehaviour
         }   
     }
 
-    void ApplyDamage(int value)
+    public void ApplyDamage(int value)
     {
         health -= value;
         if(health > maxHealth)
         {
             health = maxHealth;
         }
+    }
+
+    public float GetHealthRatio()
+    {
+        return healthRatio;
+    }
+
+    public Vector3 GetPosition()
+    {
+        return this.transform.position;
     }
 }
 

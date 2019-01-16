@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class Zombie_script1 : MonoBehaviour
 {
     public GameObject enemy;
-    public Image helthBar;
+ //   public Image helthBar;
     public bool attack = false;
     public bool move = false;
     public float distanceToTarget;
@@ -78,13 +78,15 @@ public class Zombie_script1 : MonoBehaviour
     }
     private void OnTriggerExit(Collider other)
     {
-        enemy = null;
-        move = false;
-        triggerCount--;
+        if(other.gameObject.layer == Layers.player || other.gameObject.layer == Layers.human) { 
+            enemy = null;
+            move = false;
+            triggerCount--;
+        }
     }
     void OnTriggerStay(Collider other)
     {
-        if (distanceToTarget > 1f)
+        if (distanceToTarget > 1.2f)
         {
             attack = false;
             move = true;
@@ -109,16 +111,14 @@ public class Zombie_script1 : MonoBehaviour
     }
     GameObject DefineTarget()
     {
-        float maxHealthRatio = playerAttributes.healthRatio;
-        float distanceToPlayer = (gameObject.transform.position - player.transform.position).magnitude;
-        float maxBaitCoefficient = playerAttributes.healthRatio / distanceToPlayer;
+        //float maxHealthRatio = playerAttributes.GetHealthRatio();
+        float maxBaitCoefficient = CalculateBaitCoefficient(playerAttributes);
         float humanBaitCoefficient = 0;
         int indexOfTarget = -1;
         for (int i = 0; i < humanList.Count; i++)
         {
-            if (humanList[i]) { 
-                float distance = (gameObject.transform.position - humanList[i].transform.position).magnitude;
-                humanBaitCoefficient = humanList[i].healthRatio / distance;
+            if (humanList[i]) {
+                humanBaitCoefficient = CalculateBaitCoefficient(humanList[i]);
                 if (humanBaitCoefficient >= maxBaitCoefficient) {
                     maxBaitCoefficient = humanBaitCoefficient;
                     indexOfTarget = i;
@@ -129,6 +129,10 @@ public class Zombie_script1 : MonoBehaviour
             return humanList[indexOfTarget].gameObject;
         else
             return player;
+    }
+    float CalculateBaitCoefficient(IDamageable human) {
+        float distance = (gameObject.transform.position - human.GetPosition()).magnitude;
+        return human.GetHealthRatio() / (distance * distance);
     }
 
 }
