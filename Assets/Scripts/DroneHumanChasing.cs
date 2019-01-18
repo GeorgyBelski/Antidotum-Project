@@ -12,18 +12,19 @@ public class DroneHumanChasing : MonoBehaviour
     public Transform catcher;
 
     List<ZombieAttributes> humanList;
-    DroneCatchingHuman dcHuman;
+    DroneCatchingHuman catchingHuman;
     bool catchCommand = false;
-    bool isHumanPickedUp = false;
     bool manOnBoard = false;
+    float startSpeed;
     float defineTargetCooldown = 0.5f;
     float timer = 0f;
 
     void Awake()
     {
         humanList = HumanManager.humanList;
-        dcHuman = GetComponent<DroneCatchingHuman>();
+        catchingHuman = GetComponent<DroneCatchingHuman>();
         timer = defineTargetCooldown;
+        startSpeed = speed;
     }
 
     void FixedUpdate()
@@ -61,9 +62,19 @@ public class DroneHumanChasing : MonoBehaviour
                 }
             }
 
-            if (dcHuman.isLifted) {
+            if (catchingHuman.isLifted)
+            {
                 target = centralBase;
                 manOnBoard = true;
+            }
+            else if (catchingHuman.cancel)
+            {
+                speed = 0f;
+            }
+            else {
+                speed = startSpeed;
+                catchCommand = false;
+                manOnBoard = false;
             }
             transform.rotation = Quaternion.Lerp(transform.rotation, toRotation, turningSpeed * Time.deltaTime);
         }
@@ -73,7 +84,7 @@ public class DroneHumanChasing : MonoBehaviour
     private void Catch()
     {
         Transform targetNeck = target.GetComponent<ZombieAttributes>().neckPosition;
-        GetComponent<DroneCatchingHuman>().targetNeck = targetNeck;
+        catchingHuman.targetNeck = targetNeck;
         catchCommand = true;
 
     }
