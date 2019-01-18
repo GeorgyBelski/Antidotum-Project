@@ -1202,6 +1202,7 @@ GameObject:
   - component: {fileID: 1034142262}
   - component: {fileID: 1034142261}
   - component: {fileID: 1034142260}
+  - component: {fileID: 1034142264}
   m_Layer: 0
   m_Name: DroneSpawner
   m_TagString: Untagged
@@ -1281,6 +1282,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 27
   m_LocalEulerAnglesHint: {x: 0, y: -87.76601, z: 0}
+--- !u!114 &1034142264
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1034142259}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 49040de36d9459645894fd975e7d24f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  savedHumansBar: {fileID: 3364303020979567295}
 --- !u!1 &1039962645
 GameObject:
   m_ObjectHideFlags: 0
@@ -2001,43 +2015,6 @@ PrefabInstance:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 1039962648}
-    - target: {fileID: 1195707337347821132, guid: d63f8213c6953e44981104a36d2a8d46,
-        type: 3}
-      propertyPath: maxBioAmount
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 530945549, guid: d63f8213c6953e44981104a36d2a8d46, type: 3}
-      propertyPath: m_MatchWidthOrHeight
-      value: 0.753
-      objectReference: {fileID: 0}
-    - target: {fileID: 1379412795, guid: d63f8213c6953e44981104a36d2a8d46, type: 3}
-      propertyPath: m_AnchorMin.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1379412795, guid: d63f8213c6953e44981104a36d2a8d46, type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1379412795, guid: d63f8213c6953e44981104a36d2a8d46, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 106
-      objectReference: {fileID: 0}
-    - target: {fileID: 1379412795, guid: d63f8213c6953e44981104a36d2a8d46, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1069355563, guid: d63f8213c6953e44981104a36d2a8d46, type: 3}
-      propertyPath: m_Constraints
-      value: 116
-      objectReference: {fileID: 0}
-    - target: {fileID: 588546821, guid: d63f8213c6953e44981104a36d2a8d46, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 940404449, guid: d63f8213c6953e44981104a36d2a8d46, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d63f8213c6953e44981104a36d2a8d46, type: 3}
 --- !u!1001 &300639965760812386
@@ -2114,6 +2091,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f7259f7c8c996494ab6ffd640fd1b239, type: 3}
+--- !u!114 &3364303020979567295 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3364303020979567295, guid: d63f8213c6953e44981104a36d2a8d46,
+    type: 3}
+  m_PrefabInstance: {fileID: 1958377361}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &3661960290539002430
 PrefabInstance:
   m_ObjectHideFlags: 0

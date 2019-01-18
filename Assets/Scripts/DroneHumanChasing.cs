@@ -27,7 +27,7 @@ public class DroneHumanChasing : MonoBehaviour
         startSpeed = speed;
     }
 
-    void FixedUpdate()
+    void Update()
     {
         timer += Time.deltaTime;
 
@@ -62,7 +62,7 @@ public class DroneHumanChasing : MonoBehaviour
                         Catch();
                     }
                     else if (target == centralBase && manOnBoard) {
-                        HumanManager.savedPeople++;
+                        HumanManager.savedPeopleNumber++;
                         HumanManager.humanList.Remove(manOnBoard.GetComponent<ZombieAttributes>());
                         Destroy(manOnBoard.gameObject);
                         catchingHuman.Reload();
