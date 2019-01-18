@@ -10,7 +10,7 @@ public class DroneCatchingHuman : MonoBehaviour
     public bool isLifted = false;
     public bool cancel = false;
     float path =0f;
-    bool starCathing = false;
+    bool startCathing = false;
     bool isCached = false;
     bool reloadEnded = true;
 
@@ -29,11 +29,11 @@ public class DroneCatchingHuman : MonoBehaviour
         {
             //    
             // z = targetNeck.root;
-            if (!starCathing)
+            if (!startCathing)
             {
                 startLocalPosition = transform.InverseTransformPoint(catcher.position);
                 startWorldPosition = catcher.position;
-                starCathing = true;
+                startCathing = true;
             }
             if (!isCached)
             {
@@ -70,13 +70,13 @@ public class DroneCatchingHuman : MonoBehaviour
             Reload();
         }
     }
-    void Reload() {
+    public void Reload() {
     
         if (ReturningCatcher().magnitude <= 0.05f)
         {
             isLifted = false;
             isCached = false;
-            starCathing = false;
+            startCathing = false;
             cancel = false;
             reloadEnded = true;
             catcher.position = transform.TransformPoint(startLocalPosition);

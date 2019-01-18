@@ -14,7 +14,7 @@ public class DroneHumanChasing : MonoBehaviour
     List<ZombieAttributes> humanList;
     DroneCatchingHuman catchingHuman;
     bool catchCommand = false;
-    bool manOnBoard = false;
+    Transform manOnBoard;
     float startSpeed;
     float defineTargetCooldown = 0.5f;
     float timer = 0f;
@@ -41,7 +41,7 @@ public class DroneHumanChasing : MonoBehaviour
         else
             target = centralBase;
 
-        //Rotation
+        
         if (target) { 
             Vector3 toTarget = new Vector3(target.transform.position.x, transform.position.y, target.transform.position.z) - transform.position;
             float flatDistance = toTarget.magnitude;
@@ -58,24 +58,38 @@ public class DroneHumanChasing : MonoBehaviour
                 if (angle < 0.1f)
                 {
                     if (target != centralBase && !catchCommand)
+                    {
                         Catch();
+                    }
+                    else if (target == centralBase && manOnBoard) {
+                        HumanManager.savedPeople++;
+                        HumanManager.humanList.Remove(manOnBoard.GetComponent<ZombieAttributes>());
+                        Destroy(manOnBoard.gameObject);
+                        catchingHuman.Reload();
+                        catchCommand = false; 
+                    }
                 }
             }
 
-            if (catchingHuman.isLifted)
+            if (catchingHuman.isLifted && !manOnBoard)
             {
-                target = centralBase;
-                manOnBoard = true;
+                if (target != centralBase) {
+                    manOnBoard = target;
+                    target = centralBase;
+                }
+                catchCommand = false;
+            //    catchingHuman.Reload();
             }
             else if (catchingHuman.cancel)
             {
                 speed = 0f;
+                manOnBoard = null;
             }
             else {
                 speed = startSpeed;
-                catchCommand = false;
-                manOnBoard = false;
+                catchCommand = false;             
             }
+            //Rotation
             transform.rotation = Quaternion.Lerp(transform.rotation, toRotation, turningSpeed * Time.deltaTime);
         }
         

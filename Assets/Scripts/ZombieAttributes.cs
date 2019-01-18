@@ -11,7 +11,7 @@ public class ZombieAttributes : MonoBehaviour, IDamageable
     [Range(0, 100)]
     public int health;
 
-    Image currentHealsBar;
+    public Image currentHealsBar;
     float healthRatio;
     int previousHealth;
 
@@ -42,7 +42,7 @@ public class ZombieAttributes : MonoBehaviour, IDamageable
         renderer = gameObject.transform.Find("Personnage2").GetComponent<Renderer>();
         health = maxHealth;
         previousHealth = health;
-        currentHealsBar = gameObject.transform.Find("Canvas_Health/Image_Health_Bar").GetComponent<Image>();
+        currentHealsBar = gameObject.transform.FindChild("Canvas_Health/Image_Health_Bar").GetComponent<Image>();
         currentHealsBar.rectTransform.localScale = new Vector3(1, 1, 1);
         healthRatio = 1f;
     }
