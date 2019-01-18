@@ -26,6 +26,7 @@ public class ZombieAttributes : MonoBehaviour, IDamageable
     public bool isCured = false;
     public bool isInjured = false;
     public Material curedMaterial;
+    public Transform neckPosition;
     
     new Renderer renderer;
     private float timeRangeToSound;

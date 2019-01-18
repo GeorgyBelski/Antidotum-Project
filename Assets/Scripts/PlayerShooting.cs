@@ -6,6 +6,7 @@ using UnityEngine.UI;
 
 public class PlayerShooting : MonoBehaviour
 {
+    public bool InfinityAntidote = true;
 
     public float pistolBulletInClip = 14f;
     public float reloadPistolTime = 1f;
@@ -83,7 +84,7 @@ public class PlayerShooting : MonoBehaviour
 
         if (timerCoolDown <= 0 && Input.GetMouseButton(1))
         {
-            if (pAttributes.antidoteAmount > 0) {
+            if (pAttributes.antidoteAmount > 0 || InfinityAntidote) {
                 AntidoteFire();
                 pAttributes.RemoveAntidote();
                 timerCoolDown = coolDown;
