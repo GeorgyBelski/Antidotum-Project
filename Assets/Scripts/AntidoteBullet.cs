@@ -30,14 +30,14 @@ public class AntidoteBullet : MonoBehaviour
 
 
     }
-    /*  
+      
       void OnCollisionEnter(Collision collision)
       {
-          if(collision.gameObject.CompareTag("Zombie"))
+          if(!collision.gameObject.CompareTag("Player"))
           { 
               Destroy(gameObject);
             //  Debug.Log("collision.gameObject.layer == floorLayer");
           }
       }
-      */
+      
 }

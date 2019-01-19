@@ -8,15 +8,19 @@ public class PlayerShooting : MonoBehaviour
 {
     public bool InfinityAntidote = true;
 
+
     public float pistolBulletInClip = 14f;
     public float reloadPistolTime = 1f;
     private float reloadPistolTimeLeft;
     private float realPistolBulletInClip;
 
+    public float rifleBulletAtAll = 0;
     public float rifleBulletInClip = 30f;
     public float reloadRifleTime = 2f;
+    private float realrifleBulletAtAll;
     private float reloadRifleTimeLeft;
     private float realRifleBulletInClip;
+    private bool reloadbool = false;
 
     public float range = 12f;
 
@@ -24,6 +28,7 @@ public class PlayerShooting : MonoBehaviour
 
     private Rifle_Fire rifle;
 
+    public AudioClip emptyAmmo;
     public AudioClip fire_pistol;
     public AudioClip fire_rifle;
     public AudioClip reload_pistol;
@@ -57,6 +62,7 @@ public class PlayerShooting : MonoBehaviour
 
     void Start()
     {
+        realrifleBulletAtAll = rifleBulletAtAll;
         reloadRifleTimeLeft = reloadRifleTime;
         realRifleBulletInClip = rifleBulletInClip;
         rifle = new Rifle_Fire(gun.transform, this.transform, bulletPrefab);
@@ -68,10 +74,14 @@ public class PlayerShooting : MonoBehaviour
         shootableMask |= LayerMask.GetMask("Human");
         gunLine = GetComponent<LineRenderer>();
         pAttributes = GetComponent<PlayerAttributes>();
+
+        rifleBulletAmmount.text = realRifleBulletInClip + "/" + realrifleBulletAtAll;
+        pistolBulletAmmount.text = realPistolBulletInClip + "/-";
     }
 
     void Update()
     {
+
         timerCoolDown -= Time.deltaTime;
         pistolcurrentCoolDown -= Time.deltaTime;
         riflecurrentCoolDown -= Time.deltaTime;
@@ -84,11 +94,12 @@ public class PlayerShooting : MonoBehaviour
 
         if (timerCoolDown <= 0 && Input.GetMouseButton(1))
         {
-            if (pAttributes.antidoteAmount > 0 || InfinityAntidote) {
+            if (pAttributes.antidoteAmount > 0 || InfinityAntidote)
+            {
                 AntidoteFire();
                 pAttributes.RemoveAntidote();
                 timerCoolDown = coolDown;
-            }     
+            }
         }
         if (timerCoolDown < coolDown * effectDisplayTime)
         {
@@ -102,6 +113,20 @@ public class PlayerShooting : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Alpha2))
         {
             type = 2;
+        }
+        if (reloadbool)
+        {
+            reloadRifleTimeLeft -= Time.deltaTime;
+            reloadPistolTimeLeft -= Time.deltaTime;
+            if (reloadRifleTimeLeft <= 0)
+            {
+                reloadbool = false;
+                rifleBulletAmmount.text = realRifleBulletInClip + "/" + realrifleBulletAtAll;
+                pistolBulletAmmount.text = realPistolBulletInClip + "/-";
+                reloadRifleTimeLeft = reloadRifleTime;
+                reloadPistolTimeLeft = reloadPistolTime;
+            }
+
         }
     }
 
@@ -123,7 +148,7 @@ public class PlayerShooting : MonoBehaviour
             case 1:
                 if (pistolcurrentCoolDown <= 0)
                 {
-                    
+
                     timerCoolDown = coolDown;
                     realPistolBulletInClip -= 1;
                     pistolBulletAmmount.text = realPistolBulletInClip + "/-";
@@ -134,7 +159,7 @@ public class PlayerShooting : MonoBehaviour
                         reload();
                     }
 
-                    Instantiate(bulletPrefab,gun.transform.position, this.transform.rotation);
+                    Instantiate(bulletPrefab, gun.transform.position, this.transform.rotation);
 
                     MakeShootRay();
                 }
@@ -142,20 +167,32 @@ public class PlayerShooting : MonoBehaviour
             case 2:
                 if (riflecurrentCoolDown <= 0)
                 {
-                    
-                    timerCoolDown = coolDown;
-                    realRifleBulletInClip -= 1;
-                    rifleBulletAmmount.text = realRifleBulletInClip + "/-";
-                    rifle.fire();
-                    audioSource.PlayOneShot(fire_rifle, 0.3f);
-                    riflecurrentCoolDown = riflecoolDown;
-                    if (realRifleBulletInClip == 0)
+                    if (realRifleBulletInClip != 0)
                     {
-                        reloadRifle();
+                        timerCoolDown = coolDown;
+                        realRifleBulletInClip -= 1;
+                        rifleBulletAmmount.text = realRifleBulletInClip + "/" + realrifleBulletAtAll;
+                        rifle.fire();
+                        audioSource.PlayOneShot(fire_rifle, 0.3f);
+                        riflecurrentCoolDown = riflecoolDown;
+                        MakeShootRay();
+                    }
+                    else
+                    {
+                        if (realrifleBulletAtAll != 0)
+                        {
+                            reloadRifle();
+                        }
+                        else
+                        {
+                            audioSource.PlayOneShot(emptyAmmo, 0.3f);
+
+                            riflecurrentCoolDown = riflecoolDown + 0.5f;
+                        }
                     }
 
                     //Instantiate(bulletPrefab, gun.transform.position, this.transform.rotation);
-                    MakeShootRay();
+
 
                 }
                 break;
@@ -188,6 +225,7 @@ public class PlayerShooting : MonoBehaviour
     }
     void reload()
     {
+        reloadbool = true;
         pistolcurrentCoolDown = reloadPistolTime;
         realPistolBulletInClip = pistolBulletInClip;
         audioSource.PlayOneShot(reload_pistol, 0.7f);
@@ -201,13 +239,31 @@ public class PlayerShooting : MonoBehaviour
     void reloadRifle()
     {
         riflecurrentCoolDown = reloadRifleTime;
-        realRifleBulletInClip = rifleBulletInClip;
         audioSource.PlayOneShot(reload_rifle, 1f);
-        reloadRifleTimeLeft -= Time.deltaTime;
+        //reloadRifleTimeLeft -= Time.deltaTime;
+        if (realrifleBulletAtAll >= rifleBulletInClip)
+        {
+            realRifleBulletInClip = rifleBulletInClip;
+            realrifleBulletAtAll -= rifleBulletInClip;
+        }
+        else
+        {
+            realRifleBulletInClip = realrifleBulletAtAll;
+            realrifleBulletAtAll = 0; ;
+        }
+        reloadbool = true;
+
+
         if (reloadRifleTimeLeft <= 0)
         {
             rifleBulletAmmount.text = realRifleBulletInClip + "/-";
             reloadRifleTimeLeft = reloadRifleTime;
         }
+    }
+    public void AddAmmo(float value)
+    {
+        
+        realrifleBulletAtAll += value;
+        rifleBulletAmmount.text = realRifleBulletInClip + "/" + realrifleBulletAtAll;
     }
 }
