@@ -20,46 +20,50 @@ public class Test_Spawn_zombies : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        realtime -= Time.deltaTime;
-       if (realtime < 0)
-        {
-            switch (Random.Range(1, 4))
+        if (player) { 
+           realtime -= Time.deltaTime;
+           if (realtime < 0)
             {
-                case 1:
-                    Instantiate(zombiePrefub, 
-                        new Vector3(player.transform.position.x + 10, 
-                        0.2f, 
-                        player.transform.position.z + 10), 
-                        new Quaternion(0, 0, 0, 0), 
-                        null);
-                    break;
-                case 2:
-                    Instantiate(zombiePrefub,
-                        new Vector3(player.transform.position.x + 10,
-                        0.2f,
-                        player.transform.position.z - 10),
-                        new Quaternion(0, 0, 0, 0),
-                        null);
-                    break;
-                case 3:
-                    Instantiate(zombiePrefub,
+                switch (Random.Range(1, 5))
+                {
+                    case 1:
+                        Instantiate(zombiePrefub, 
+                            new Vector3(player.transform.position.x + 10, 
+                            0.2f, 
+                            player.transform.position.z + 10), 
+                            new Quaternion(0, 0, 0, 0), 
+                            null);
+                        break;
+                    case 2:
+                        Instantiate(zombiePrefub,
+                            new Vector3(player.transform.position.x + 10,
+                            0.2f,
+                            player.transform.position.z - 10),
+                            new Quaternion(0, 0, 0, 0),
+                            null);
+                        break;
+                    case 3:
+                        Instantiate(zombiePrefub,
+                            new Vector3(player.transform.position.x - 10,
+                            0.2f,
+                            player.transform.position.z - 10),
+                            new Quaternion(0, 0, 0, 0),
+                            null);
+                        break;
+                    case 4:
+                        Instantiate(zombiePrefub,
                         new Vector3(player.transform.position.x - 10,
                         0.2f,
-                        player.transform.position.z - 10),
+                        player.transform.position.z + 10),
                         new Quaternion(0, 0, 0, 0),
                         null);
-                    break;
-                case 4:
-                    Instantiate(zombiePrefub,
-                    new Vector3(player.transform.position.x - 10,
-                    0.2f,
-                    player.transform.position.z + 10),
-                    new Quaternion(0, 0, 0, 0),
-                    null);
-                    break;
-            }
-            realtime = time;
+                        break;
+                    default:
+                        break;
+                }
+                realtime = time;
             
-        } 
+            } 
+        }
     }
 }

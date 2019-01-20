@@ -13,6 +13,15 @@ public class PlayerAttributes : MonoBehaviour, IDamageable
     float healthRatio;
     [Space]
 
+    [Range(1, 4)]
+    public int livesCount;
+    public Image lives;
+    RectTransform size;
+    private float godTime = 1;
+    private bool godbool = false;
+    public Text gameText;
+    public GameObject zombieAfterDead, gameOverBox;
+
     [Range(1, 30)]
     public int maxBioAmount = 10;
     public int bioAmount = 0;
@@ -21,8 +30,8 @@ public class PlayerAttributes : MonoBehaviour, IDamageable
     public List<Image> BioBars;
     public List<Image> antidoteCreationBars;
     public Text AntidoteAmountText;
-    
 
+    private Image healthBarColor;
     Image currentHealsBar;
     Image antidoteImage;
     SphereCollider detectionSphere;
@@ -38,6 +47,10 @@ public class PlayerAttributes : MonoBehaviour, IDamageable
 
     void Start()
     {
+        
+        size = lives.GetComponent<RectTransform>();
+        size.sizeDelta = new Vector2(270*livesCount, 240);
+        //lives.rectTransform.transform.
         health = maxHealth;
         previousHealth = health;
         currentHealsBar = gameObject.transform.Find("Canvas_Health/Image_Health_Bar").GetComponent<Image>();
@@ -49,12 +62,22 @@ public class PlayerAttributes : MonoBehaviour, IDamageable
         AntidoteAmountText.text = "" + antidoteAmount;
         SetAntidoteCreationBars(0f);
         healthRatio = 1f;
+        healthBarColor = currentHealsBar.GetComponent<Image>();
+        gameText.color = new Color(gameText.color.r, gameText.color.g, gameText.color.b, 0);
 
     }
 
     void Update()
     {
-        
+        if(godTime > 0) { 
+            godTime -= Time.deltaTime;
+        }
+        else
+        {
+            //godbool = false;
+            healthBarColor.color = new Color32(70, 195, 111, 255);
+        }
+
         if (health != previousHealth)
         {
         //    currentHealsBar.color = new Color(0f,.5f+0.2f*Mathf.Sin(Time.time*12f),0f);
@@ -127,11 +150,36 @@ public class PlayerAttributes : MonoBehaviour, IDamageable
 
     public void ApplyDamage(int value)
     {
+        if (godTime >= 0)
+        {
+            value = 0;
+        }
         health -= value;
         if(health > maxHealth)
         {
             health = maxHealth;
         }
+        if(health <= 0)
+        {
+            godTime = 2;
+            livesCount -= 1;
+            health = maxHealth;
+            size.sizeDelta = new Vector2(270 * livesCount, 240);
+            healthBarColor.color = new Color32(72, 110, 195, 255);
+            //godbool = true;
+            if (livesCount == 0)
+            {
+                Instantiate(zombieAfterDead, this.transform.position, this.transform.rotation);
+                Instantiate(gameOverBox, this.transform.position, this.transform.rotation);
+                gameText.color = new Color(gameText.color.r, gameText.color.g, gameText.color.b, 255);
+                Destroy(gameObject);
+                //this.transform.position = new Vector3(this.transform.position.x, this.transform.position.y-3, this.transform.position.z);
+                
+
+            }
+       
+        }
+        
     }
 
     public float GetHealthRatio()

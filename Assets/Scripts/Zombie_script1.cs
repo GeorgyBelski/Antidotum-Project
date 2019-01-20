@@ -2,15 +2,19 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.AI;
 
 public class Zombie_script1 : MonoBehaviour
 {
+
+    
     public GameObject enemy;
  //   public Image helthBar;
     public bool attack = false;
     public bool move = false;
     public float distanceToTarget;
     public float rotationSpeed = 3f;
+    private Vector3 target;
 
     GameObject player;
     ZombieAttributes zombieAttributes;
@@ -23,6 +27,7 @@ public class Zombie_script1 : MonoBehaviour
 
     void Start()
     {
+        target = new Vector3(0,0,0);
         player = GameObject.Find("Player");
         playerAttributes = player.GetComponent<PlayerAttributes>();
         zombieAttributes = GetComponent<ZombieAttributes>();
@@ -40,8 +45,10 @@ public class Zombie_script1 : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (enemy)
+       
+         if (enemy)
         {
+           target = new Vector3(0, 0, 0); 
             distanceToTarget = (enemy.transform.position - this.transform.position).magnitude;
             //    transform.LookAt(new Vector3(enemy.transform.position.x, transform.position.y, enemy.transform.position.z));
             Vector3 toTarget = new Vector3(enemy.transform.position.x, transform.position.y, enemy.transform.position.z) - transform.position;
@@ -51,8 +58,23 @@ public class Zombie_script1 : MonoBehaviour
         }
         else
         {
-            distanceToTarget = float.PositiveInfinity;
+            
+            if (target.x == 0 && target.z == 0) {
+                
+                target = new Vector3(this.transform.position.x + Random.Range(-6f, 6f), this.transform.position.y , this.transform.position.z + Random.Range(-6f, 6f));
+                //print("+");
+            }
+            distanceToTarget = (target - this.transform.position).magnitude;
+            //    transform.LookAt(new Vector3(enemy.transform.position.x, transform.position.y, enemy.transform.position.z));
+            Vector3 toTarget = new Vector3(target.x, transform.position.y, target.z) - transform.position;
+            Quaternion toRotation = Quaternion.LookRotation(toTarget, Vector3.up);
+            transform.rotation = Quaternion.Lerp(transform.rotation, toRotation, rotationSpeed * Time.deltaTime);
+            move = true;
+            if(distanceToTarget < 1)
+                target = new Vector3(0, 0, 0);
+            //distanceToTarget = float.PositiveInfinity;
         }
+        
     }
 
     void OnCollisionEnter(Collision collision)
@@ -69,6 +91,10 @@ public class Zombie_script1 : MonoBehaviour
             Destroy(collision.gameObject);
             zombieAttributes.Recover();
             this.enabled = false;
+        }
+        if (collision.gameObject.layer == Layers.obstacle)
+        {
+            target = new Vector3(0, 0, 0);
         }
 
     }
@@ -88,11 +114,13 @@ public class Zombie_script1 : MonoBehaviour
     {
         if (distanceToTarget > 1.2f)
         {
+            
             attack = false;
             move = true;
         }
         else
         {
+            target = new Vector3(0, 0, 0);
             attack = true;
             move = false;
         }

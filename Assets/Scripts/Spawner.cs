@@ -9,6 +9,7 @@ public class Spawner : MonoBehaviour
     public GameObject zombiePrefab;
     public float spawnCooldown = 5f;
     float currentCooldown =0f;
+    private bool spawn = true;
     void Start()
     {
         
@@ -17,7 +18,7 @@ public class Spawner : MonoBehaviour
     void Update()
     {
         currentCooldown -= Time.deltaTime;
-        if (currentCooldown <= 0)
+        if (currentCooldown <= 0 && spawn)
         {
             SpownZombie();
             currentCooldown = spawnCooldown;
@@ -27,5 +28,13 @@ public class Spawner : MonoBehaviour
     private void SpownZombie()
     {
         Instantiate(zombiePrefab, this.transform.position, this.transform.rotation);
+    }
+    void OnBecameInvisible()
+    {
+        spawn = true;
+    }
+    void OnBecameVisible()
+    {
+        spawn = false;
     }
 }

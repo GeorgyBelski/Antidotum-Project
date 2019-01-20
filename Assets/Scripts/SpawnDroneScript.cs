@@ -38,6 +38,7 @@ public class SpawnDroneScript : MonoBehaviour
             //posZ = Random.Range(1f, 10f) + randZ;
             timeLeft = coolDown;
             player = GameObject.Find("Player");
+            if(player)
             Instantiate(drone, new Vector3(player.transform.position.x + randX, player.transform.position.y + 6, player.transform.position.z + randZ), player.transform.rotation, null);
         }
 

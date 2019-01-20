@@ -80,10 +80,12 @@ public class AmmoDroneScript : MonoBehaviour
     }
     void stop()
     {
+        if (player) { 
         //realSpeed = 0;
-        realStopTime = stopTime;
-        target = new Vector3(player.transform.position.x + 50, transform.position.y, player.transform.position.z + 50);
-        transform.LookAt(target);
+            realStopTime = stopTime;
+            target = new Vector3(player.transform.position.x + 50, transform.position.y, player.transform.position.z + 50);
+            transform.LookAt(target);
+        }
     }
 
 }

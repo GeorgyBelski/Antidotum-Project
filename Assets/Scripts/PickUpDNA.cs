@@ -18,15 +18,17 @@ public class PickUpDNA : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
-        if (!pA.antidoteCreationProcess && other.gameObject.CompareTag("DNA"))
-        {
-            Destroy(other.gameObject);
-            pA.bioAmount++;
-            if (pA.bioAmount >= pA.maxBioAmount)
+        if (pA) { 
+            if (!pA.antidoteCreationProcess && other.gameObject.CompareTag("DNA"))
             {
-                pA.antidoteCreationProcess = true;
-            }
+                Destroy(other.gameObject);
+                pA.bioAmount++;
+                if (pA.bioAmount >= pA.maxBioAmount)
+                {
+                    pA.antidoteCreationProcess = true;
+                }
 
+            }
         }
     }
 

@@ -105,4 +105,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   zombiePrefab: {fileID: 1438875000, guid: 908c65458c875054abbb848f309ec7bc, type: 3}
-  spawnCooldown: 10
+  spawnCooldown: 30
