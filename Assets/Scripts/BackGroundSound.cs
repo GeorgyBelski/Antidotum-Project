@@ -20,7 +20,7 @@ public class BackGroundSound : MonoBehaviour
         player = GameObject.Find("Player");
         if(player == null)
         {
-            audioSource.pitch = 0.75f;
+            audioSource.pitch = 0.85f;
         }
     }
 }
