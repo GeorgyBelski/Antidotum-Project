@@ -12,7 +12,7 @@ public class AmmoDroneScript : MonoBehaviour
     private float realSpeed;
     private float posX, posZ;
     private GameObject player;
-    private float distanse, downSpeed = 0.06f;
+    private float distanse, downSpeed = 4f;
     private Vector3 target, catcherStartPos;
     private bool onPos = false, onGround = false;
     private float stopTime = 5;
@@ -50,7 +50,7 @@ public class AmmoDroneScript : MonoBehaviour
         }
         else
         {
-            catcher.transform.position = new Vector3(catcher.transform.position.x, catcher.transform.position.y - downSpeed, catcher.transform.position.z);
+            catcher.transform.position = new Vector3(catcher.transform.position.x, catcher.transform.position.y - downSpeed * Time.deltaTime, catcher.transform.position.z);
             if (catcher.transform.position.y <= 0.65f && !onGround)
             {
                 onGround = true;
