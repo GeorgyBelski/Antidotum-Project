@@ -47,7 +47,7 @@ public class DroneCatchingHuman : MonoBehaviour
                     endPosition = catcher.position;
                     speed = startSpeed;
                 }
-                else if(toTarget.magnitude <= 0.25f && speed > 0.5f)
+                else if (toTarget.magnitude <= 0.25f && speed > 0.5f)
                 {
                     speed /= 2;
                 }
@@ -55,7 +55,7 @@ public class DroneCatchingHuman : MonoBehaviour
             }
             else
             {
-                if (ReturningCatcher().magnitude <= 0.05f)
+                if (ReturningCatcher().magnitude <= 0.08f)
                 {
                     isLifted = true;
                     reloadEnded = true;
@@ -64,11 +64,12 @@ public class DroneCatchingHuman : MonoBehaviour
             }
 
         }
-        else if(!reloadEnded)
+        else if (!reloadEnded)
         {
             cancel = true;
             Reload();
         }
+
     }
     public void Reload() {
     
@@ -79,6 +80,7 @@ public class DroneCatchingHuman : MonoBehaviour
             startCathing = false;
             cancel = false;
             reloadEnded = true;
+            speed = startSpeed;
             catcher.position = transform.TransformPoint(startLocalPosition);
         }
 
@@ -92,8 +94,9 @@ public class DroneCatchingHuman : MonoBehaviour
     }
     Vector3 ReturningCatcher()
     {
+
         Vector3 toStart = transform.TransformPoint(startLocalPosition) - catcher.position;
-        catcher.position += toStart.normalized * speed * Time.deltaTime;
+        catcher.position += toStart.normalized * startSpeed * Time.deltaTime;
         return toStart;
     }
 }

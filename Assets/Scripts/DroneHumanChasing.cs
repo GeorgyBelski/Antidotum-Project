@@ -61,7 +61,7 @@ public class DroneHumanChasing : MonoBehaviour
             else {
                 toRotation = target.rotation;
                 float angle = Quaternion.Angle(transform.rotation, target.rotation);
-                if (angle < 0.4f)
+                if (angle < 20f)
                 {
                     if (target != centralBase && !catchCommand)
                     {
@@ -77,7 +77,7 @@ public class DroneHumanChasing : MonoBehaviour
                         turningSpeed = startTurningSpeed;
                     }
                 }
-                else if (angle <= 0.9f && turningSpeed >= 0.8f) {
+                else if (angle <= 40f && turningSpeed >= 1.5f) {
                     turningSpeed /= 2;
                 }
             }
