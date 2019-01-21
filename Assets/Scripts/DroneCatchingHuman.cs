@@ -39,7 +39,7 @@ public class DroneCatchingHuman : MonoBehaviour
             {
                 Vector3 toTarget = SendingCatcher();
                 reloadEnded = false;
-                if (toTarget.magnitude <= 0.01f)
+                if (toTarget.magnitude <= 0.02f)
                 {
                     targetNeck.root.GetComponent<CapsuleCollider>().enabled = false;
                     targetNeck.root.parent = catcher;
@@ -47,7 +47,7 @@ public class DroneCatchingHuman : MonoBehaviour
                     endPosition = catcher.position;
                     speed = startSpeed;
                 }
-                else if(toTarget.magnitude <= 0.25f && speed > 1f)
+                else if(toTarget.magnitude <= 0.25f && speed > 0.5f)
                 {
                     speed /= 2;
                 }

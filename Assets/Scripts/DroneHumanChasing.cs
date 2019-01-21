@@ -16,6 +16,7 @@ public class DroneHumanChasing : MonoBehaviour
     bool catchCommand = false;
     Transform manOnBoard;
     float startSpeed;
+    float startTurningSpeed;
     float defineTargetCooldown = 0.5f;
     float timer = 0f;
 
@@ -25,6 +26,7 @@ public class DroneHumanChasing : MonoBehaviour
         catchingHuman = GetComponent<DroneCatchingHuman>();
         timer = defineTargetCooldown;
         startSpeed = speed;
+        startTurningSpeed = turningSpeed;
     }
 
     void Update()
@@ -46,28 +48,37 @@ public class DroneHumanChasing : MonoBehaviour
             Vector3 toTarget = new Vector3(target.transform.position.x, transform.position.y, target.transform.position.z) - transform.position;
             float flatDistance = toTarget.magnitude;
             Quaternion toRotation;
-            if (flatDistance > 0.1f)
+            if (flatDistance > 0.15f)
             {
                 toRotation = Quaternion.LookRotation(toTarget, Vector3.up);
                 //Position
                 transform.localPosition += toTarget.normalized * speed * Time.deltaTime;
+                if ((turningSpeed != startTurningSpeed) && flatDistance > 3f)
+                {
+                    turningSpeed = startTurningSpeed;
+                }
             }
             else {
                 toRotation = target.rotation;
                 float angle = Quaternion.Angle(transform.rotation, target.rotation);
-                if (angle < 0.1f)
+                if (angle < 0.4f)
                 {
                     if (target != centralBase && !catchCommand)
                     {
                         Catch();
                     }
-                    else if (target == centralBase && manOnBoard) {
+                    else if (target == centralBase && manOnBoard)
+                    {
                         HumanManager.savedPeopleNumber++;
                         HumanManager.humanList.Remove(manOnBoard.GetComponent<ZombieAttributes>());
                         Destroy(manOnBoard.gameObject);
                         catchingHuman.Reload();
-                        catchCommand = false; 
+                        catchCommand = false;
+                        turningSpeed = startTurningSpeed;
                     }
+                }
+                else if (angle <= 0.9f && turningSpeed >= 0.8f) {
+                    turningSpeed /= 2;
                 }
             }
 
