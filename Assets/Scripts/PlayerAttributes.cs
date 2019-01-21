@@ -32,6 +32,7 @@ public class PlayerAttributes : MonoBehaviour, IDamageable
     public Text AntidoteAmountText;
 
     private Image healthBarColor;
+    Color32 startHealthBarColor;
     Image currentHealsBar;
     Image antidoteImage;
     SphereCollider detectionSphere;
@@ -64,18 +65,19 @@ public class PlayerAttributes : MonoBehaviour, IDamageable
         healthRatio = 1f;
         healthBarColor = currentHealsBar.GetComponent<Image>();
         gameText.color = new Color(gameText.color.r, gameText.color.g, gameText.color.b, 0);
-
+        startHealthBarColor = new Color32(70, 195, 111, 255);
     }
 
     void Update()
     {
         if(godTime > 0) { 
             godTime -= Time.deltaTime;
+            healthBarColor.color = Color.Lerp(healthBarColor.color, startHealthBarColor, 1 - godTime*2);
         }
         else
         {
             //godbool = false;
-            healthBarColor.color = new Color32(70, 195, 111, 255);
+            healthBarColor.color = startHealthBarColor;
         }
 
         if (health != previousHealth)
@@ -165,7 +167,7 @@ public class PlayerAttributes : MonoBehaviour, IDamageable
             livesCount -= 1;
             health = maxHealth;
             size.sizeDelta = new Vector2(270 * livesCount, 240);
-            healthBarColor.color = new Color32(72, 110, 195, 255);
+            healthBarColor.color = new Color32(172, 100, 195, 255);
             //godbool = true;
             if (livesCount == 0)
             {

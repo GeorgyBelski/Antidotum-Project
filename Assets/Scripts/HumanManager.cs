@@ -21,7 +21,7 @@ public class HumanManager : MonoBehaviour
 
     void Update()
     {
-        if (savedPeopleNumber != previoussavedPeopleNumber) {
+        if (savedPeopleNumber != previoussavedPeopleNumber && size) {
             size.sizeDelta += new Vector2(fullWidth / 5, 0);
             previoussavedPeopleNumber = savedPeopleNumber;
         }

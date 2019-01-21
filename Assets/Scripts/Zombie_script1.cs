@@ -29,7 +29,8 @@ public class Zombie_script1 : MonoBehaviour
     {
         target = new Vector3(0,0,0);
         player = GameObject.Find("Player");
-        playerAttributes = player.GetComponent<PlayerAttributes>();
+        if(player)
+            playerAttributes = player.GetComponent<PlayerAttributes>();
         zombieAttributes = GetComponent<ZombieAttributes>();
         humanList = HumanManager.humanList;
         reaction = Random.Range(0, reactionTime);
@@ -140,7 +141,9 @@ public class Zombie_script1 : MonoBehaviour
     GameObject DefineTarget()
     {
         //float maxHealthRatio = playerAttributes.GetHealthRatio();
-        float maxBaitCoefficient = CalculateBaitCoefficient(playerAttributes);
+        float maxBaitCoefficient = 0;
+        if(playerAttributes)
+            maxBaitCoefficient = CalculateBaitCoefficient(playerAttributes);
         float humanBaitCoefficient = 0;
         int indexOfTarget = -1;
         for (int i = 0; i < humanList.Count; i++)
