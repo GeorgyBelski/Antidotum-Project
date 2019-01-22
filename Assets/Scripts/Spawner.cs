@@ -9,6 +9,7 @@ public class Spawner : MonoBehaviour
     public GameObject zombiePrefab;
     public float spawnCooldown = 5f;
     float currentCooldown =0f;
+    public int cooldownOffset = 0;
     private bool spawn = true;
     void Start()
     {
@@ -18,14 +19,15 @@ public class Spawner : MonoBehaviour
     void Update()
     {
         currentCooldown -= Time.deltaTime;
-        if (currentCooldown <= 0 && spawn)
+        cooldownOffset = HumanManager.humanList.Count;
+        if (currentCooldown <= (0 + Math.Min(cooldownOffset, spawnCooldown - 2)) && spawn)
         {
-            SpownZombie();
+            SpawnZombie();
             currentCooldown = spawnCooldown;
         }
     }
 
-    private void SpownZombie()
+    private void SpawnZombie()
     {
         Instantiate(zombiePrefab, this.transform.position, this.transform.rotation);
     }

@@ -17,6 +17,7 @@ public class ZombieAttributes : MonoBehaviour, IDamageable
 
     public GameObject soundBox_dead;
     public GameObject DropAfterDead;
+    public bool isHealPackDrops = false;
     public GameObject DropAfterDeadItems;
 
     public AudioClip[] walkingSound;
@@ -64,10 +65,12 @@ public class ZombieAttributes : MonoBehaviour, IDamageable
             if (health <= 0)
             {
                 HumanManager.humanList.Remove(this);
-                int index = Random.Range(0, 10);
-                if (index == 1)
-                {
-                    Instantiate(DropAfterDeadItems, this.transform.position, this.transform.rotation, null);
+                if (isHealPackDrops) { 
+                    int index = Random.Range(0, 10);
+                    if (index == 1)
+                    {
+                        Instantiate(DropAfterDeadItems, this.transform.position, this.transform.rotation, null);
+                    }
                 }
                 Instantiate(soundBox_dead, this.transform.position, this.transform.rotation, null);
                 Instantiate(DropAfterDead, this.transform.position, this.transform.rotation, null);

@@ -1036,11 +1036,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6373222896339079694, guid: 908c65458c875054abbb848f309ec7bc,
-        type: 3}
-      propertyPath: maxHealth
-      value: 100
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 908c65458c875054abbb848f309ec7bc, type: 3}
 --- !u!1001 &265173729
@@ -1424,31 +1419,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3661960289794259624, guid: 4cfa7068c95f10c4c9e93a4120c4fe85,
-        type: 3}
-      propertyPath: m_LocalScale.x
-      value: 0.023693122
-      objectReference: {fileID: 0}
-    - target: {fileID: 3661960289794259624, guid: 4cfa7068c95f10c4c9e93a4120c4fe85,
-        type: 3}
-      propertyPath: m_LocalScale.y
-      value: 0.023693124
-      objectReference: {fileID: 0}
-    - target: {fileID: 3661960289794259624, guid: 4cfa7068c95f10c4c9e93a4120c4fe85,
-        type: 3}
-      propertyPath: m_LocalScale.z
-      value: 0.023693122
-      objectReference: {fileID: 0}
-    - target: {fileID: 3661960289794259626, guid: 4cfa7068c95f10c4c9e93a4120c4fe85,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3661960289794259628, guid: 4cfa7068c95f10c4c9e93a4120c4fe85,
-        type: 3}
-      propertyPath: spawnCooldown
-      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4cfa7068c95f10c4c9e93a4120c4fe85, type: 3}
@@ -3681,7 +3651,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1034142259}
   m_LocalRotation: {x: -0, y: -0.6931886, z: -0, w: 0.72075635}
-  m_LocalPosition: {x: 37.9, y: 4.48, z: -7}
+  m_LocalPosition: {x: 54.04, y: 4.48, z: -7}
   m_LocalScale: {x: 1.6814, y: 0.18939, z: 2.099}
   m_Children: []
   m_Father: {fileID: 0}
@@ -3712,7 +3682,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 00325a0a0d91ca849a27cc8f8783246f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  coolDown: 10
+  coolDown: 30
   drone: {fileID: 6872668596434435807, guid: f2479e3be2f0eaf4abf1b442f4c21b9d, type: 3}
 --- !u!1 &1039962645
 GameObject:
@@ -3782,7 +3752,7 @@ Camera:
   far clip plane: 40
   field of view: 60
   orthographic: 1
-  orthographic size: 5.250135
+  orthographic size: 6.996289
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
@@ -3806,7 +3776,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1039962645}
   m_LocalRotation: {x: 0.31021303, y: 0.36046603, z: -0.12849444, w: 0.8702421}
-  m_LocalPosition: {x: -9.7, y: 11.92, z: -8.76}
+  m_LocalPosition: {x: -10.43, y: 12.76, z: -9.49}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
