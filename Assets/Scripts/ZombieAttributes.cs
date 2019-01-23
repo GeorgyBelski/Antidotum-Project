@@ -37,7 +37,7 @@ public class ZombieAttributes : MonoBehaviour, IDamageable
 
     void Start()
     {
-        timeRangeToSound = Random.Range(1f, 30f);
+        timeRangeToSound = Random.Range(1f, 40f);
         
         audioSource = GetComponent<AudioSource>();
         audioSource.pitch = Random.Range(0.9f, 1.1f);
@@ -54,6 +54,7 @@ public class ZombieAttributes : MonoBehaviour, IDamageable
         timeRangeToSound -= Time.deltaTime;
         if (timeRangeToSound < 0)
         {
+            audioSource.pitch = Random.Range(0.85f, 1.15f);
             int index = Random.Range(0, walkingSound.Length);
             audioSource.PlayOneShot(walkingSound[index], 0.3f);
             timeRangeToSound = Random.Range(3f, 50f);

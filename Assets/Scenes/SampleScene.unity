@@ -8858,7 +8858,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd72ec7ba2fde89458f1f9439b7eed11, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  time: 10
+  time: 1
   zombiePrefub: {fileID: 1438875000, guid: 908c65458c875054abbb848f309ec7bc, type: 3}
   player: {fileID: 1046368200}
 --- !u!4 &1043692724 stripped
@@ -14499,7 +14499,7 @@ PrefabInstance:
     - target: {fileID: 1195707337347821132, guid: d63f8213c6953e44981104a36d2a8d46,
         type: 3}
       propertyPath: antidoteAmount
-      value: 5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1195707337347821132, guid: d63f8213c6953e44981104a36d2a8d46,
         type: 3}
