@@ -38,6 +38,7 @@ public class ZombieAttributes : MonoBehaviour, IDamageable
     void Start()
     {
         timeRangeToSound = Random.Range(1f, 30f);
+        audioSource.pitch = Random.Range(0.9f, 1.1f);
         audioSource = GetComponent<AudioSource>();
 
         renderer = gameObject.transform.Find("Personnage2").GetComponent<Renderer>();
@@ -114,6 +115,7 @@ public class ZombieAttributes : MonoBehaviour, IDamageable
         int index = Random.Range(1, 10);
         if (index == 2)
         {
+            audioSource.pitch = Random.Range(0.9f, 1.1f);
             audioSource.PlayOneShot(zombieInPain, 1f);
         }
     }
