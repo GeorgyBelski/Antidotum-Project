@@ -1107,7 +1107,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 100
   health: 0
-  currentHealsBar: {fileID: 0}
+  currentHealsBar: {fileID: 73852808}
   soundBox_dead: {fileID: 667993456749207985, guid: 88be87b4e3427c64390c07db14906acc,
     type: 3}
   DropAfterDead: {fileID: 3247773139398580083, guid: f7259f7c8c996494ab6ffd640fd1b239,

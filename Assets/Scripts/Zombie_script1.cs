@@ -27,6 +27,12 @@ public class Zombie_script1 : MonoBehaviour
 
     void Start()
     {
+        //GameObject gm = GameObject.Find("Ob1");
+        //gm.transform.GetComponent<Collider>;
+        Physics.IgnoreCollision(GameObject.Find("Ob1").transform.GetComponent<Collider>(), GetComponent<Collider>());
+        Physics.IgnoreCollision(GameObject.Find("Ob2").transform.GetComponent<Collider>(), GetComponent<Collider>());
+        Physics.IgnoreCollision(GameObject.Find("Ob3").transform.GetComponent<Collider>(), GetComponent<Collider>());
+        Physics.IgnoreCollision(GameObject.Find("Ob4").transform.GetComponent<Collider>(), GetComponent<Collider>());
         target = new Vector3(0,0,0);
         player = GameObject.Find("Player");
         if(player)
@@ -89,6 +95,7 @@ public class Zombie_script1 : MonoBehaviour
         
         if (collision.gameObject.layer == Layers.antidotBullet)
         {
+            Test_Spawn_zombies.massiveSpawn();
             Destroy(collision.gameObject);
             zombieAttributes.Recover();
             this.enabled = false;

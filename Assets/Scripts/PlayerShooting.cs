@@ -148,7 +148,8 @@ public class PlayerShooting : MonoBehaviour
             case 1:
                 if (pistolcurrentCoolDown <= 0)
                 {
-
+                    //Time.timeScale = 0.3f;
+                    //audioSource.pitch = 0.3f;
                     timerCoolDown = coolDown;
                     realPistolBulletInClip -= 1;
                     pistolBulletAmmount.text = realPistolBulletInClip + "/-";

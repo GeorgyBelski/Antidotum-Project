@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class HumanManager : MonoBehaviour
 {
     public static int savedPeopleNumber = 0;
+    public Text gameWinText;
     int previoussavedPeopleNumber = 0;
     public static List<ZombieAttributes> humanList = new List<ZombieAttributes>();
 
@@ -24,6 +25,12 @@ public class HumanManager : MonoBehaviour
         if (savedPeopleNumber != previoussavedPeopleNumber && size) {
             size.sizeDelta += new Vector2(fullWidth / 5, 0);
             previoussavedPeopleNumber = savedPeopleNumber;
+        }
+        if (savedPeopleNumber >= 5)
+        {
+            Time.timeScale = 0.3f;
+            //GameObject.Find("")
+            gameWinText.color = new Color(gameWinText.color.r, gameWinText.color.g, gameWinText.color.b, 255);
         }
     }
 }

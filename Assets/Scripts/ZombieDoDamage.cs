@@ -23,7 +23,7 @@ public class ZombieDoDamage : MonoBehaviour
         if (zScript.enemy && zScript.distanceToTarget <= 1.5f)
         {
             audioSource.PlayOneShot(damage, 0.5f);
-            zScript.enemy.SendMessage("ApplyDamage", 10, SendMessageOptions.DontRequireReceiver);
+            zScript.enemy.SendMessage("ApplyDamage", 15, SendMessageOptions.DontRequireReceiver);
         }
     }
 }

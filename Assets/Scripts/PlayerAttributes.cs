@@ -5,6 +5,8 @@ using UnityEngine.UI;
 
 public class PlayerAttributes : MonoBehaviour, IDamageable
 {
+    //public Button buttonComponent;
+
     [Range(10, 200)]
     public int maxHealth = 100;
 
@@ -19,7 +21,7 @@ public class PlayerAttributes : MonoBehaviour, IDamageable
     RectTransform size;
     private float godTime = 1;
     private bool godbool = false;
-    public Text gameText;
+    //public static Text gameText;
     public GameObject zombieAfterDead, gameOverBox;
 
     [Range(1, 30)]
@@ -48,7 +50,8 @@ public class PlayerAttributes : MonoBehaviour, IDamageable
 
     void Start()
     {
-        
+        //buttonComponent.onClick.;
+        //Instantiate(gameOverBox, this.transform.position, this.transform.rotation);
         size = lives.GetComponent<RectTransform>();
         size.sizeDelta = new Vector2(270*livesCount, 240);
         //lives.rectTransform.transform.
@@ -64,7 +67,7 @@ public class PlayerAttributes : MonoBehaviour, IDamageable
         SetAntidoteCreationBars(0f);
         healthRatio = 1f;
         healthBarColor = currentHealsBar.GetComponent<Image>();
-        gameText.color = new Color(gameText.color.r, gameText.color.g, gameText.color.b, 0);
+        //gameText.color = new Color(gameText.color.r, gameText.color.g, gameText.color.b, 0);
         startHealthBarColor = new Color32(70, 195, 111, 255);
     }
 
@@ -173,7 +176,7 @@ public class PlayerAttributes : MonoBehaviour, IDamageable
             {
                 Instantiate(zombieAfterDead, this.transform.position, this.transform.rotation);
                 Instantiate(gameOverBox, this.transform.position, this.transform.rotation);
-                gameText.color = new Color(gameText.color.r, gameText.color.g, gameText.color.b, 255);
+                //gameText.color = new Color(gameText.color.r, gameText.color.g, gameText.color.b, 255);
                 Destroy(gameObject);
                 //this.transform.position = new Vector3(this.transform.position.x, this.transform.position.y-3, this.transform.position.z);
                 

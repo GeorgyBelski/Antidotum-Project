@@ -18,6 +18,7 @@ public class Dead_sound_box : MonoBehaviour
         audioSource = GetComponent<AudioSource>();
         sound = (int)Random.Range(0, zombie_dead.Length);
         audioSource.PlayOneShot(zombie_dead[sound], 0.5f);
+        audioSource.pitch = Random.Range(0.8f, 1.2f);
         //reallifeTime = lifeTime;
     }
 

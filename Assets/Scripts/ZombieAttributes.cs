@@ -38,9 +38,9 @@ public class ZombieAttributes : MonoBehaviour, IDamageable
     void Start()
     {
         timeRangeToSound = Random.Range(1f, 30f);
-        audioSource.pitch = Random.Range(0.9f, 1.1f);
+        
         audioSource = GetComponent<AudioSource>();
-
+        audioSource.pitch = Random.Range(0.9f, 1.1f);
         renderer = gameObject.transform.Find("Personnage2").GetComponent<Renderer>();
         health = maxHealth;
         previousHealth = health;
