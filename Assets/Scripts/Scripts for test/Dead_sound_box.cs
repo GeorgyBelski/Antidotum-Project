@@ -5,9 +5,10 @@ using UnityEngine;
 public class Dead_sound_box : MonoBehaviour
 {
     
-    public AudioClip zombie_dead;
+    public AudioClip[] zombie_dead;
     private AudioSource audioSource;
     public float lifeTime = 2f;
+    private int sound;
    // private float reallifeTime;
 
     // Start is called before the first frame update
@@ -15,7 +16,8 @@ public class Dead_sound_box : MonoBehaviour
     {
         
         audioSource = GetComponent<AudioSource>();
-        audioSource.PlayOneShot(zombie_dead, 0.4f);
+        sound = (int)Random.Range(0, zombie_dead.Length);
+        audioSource.PlayOneShot(zombie_dead[sound], 0.5f);
         //reallifeTime = lifeTime;
     }
 

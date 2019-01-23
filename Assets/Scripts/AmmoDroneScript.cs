@@ -29,8 +29,8 @@ public class AmmoDroneScript : MonoBehaviour
         realSpeed = speed;
         //realStopTime = 5;
         player = GameObject.Find("Player");
-        posX = Random.Range(1f, 10f);
-        posZ = Random.Range(1f, 10f);
+        posX = Random.Range(0f, 2f);
+        posZ = Random.Range(0f, 2f);
         target = new Vector3(player.transform.position.x + posX, transform.position.y, player.transform.position.z + posZ);
 
         transform.LookAt(target);

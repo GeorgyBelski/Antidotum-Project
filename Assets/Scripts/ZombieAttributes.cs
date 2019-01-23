@@ -111,10 +111,10 @@ public class ZombieAttributes : MonoBehaviour, IDamageable
 
     public void getSound()
     {
-        int index = Random.Range(1, 6);
+        int index = Random.Range(1, 10);
         if (index == 2)
         {
-            audioSource.PlayOneShot(zombieInPain, 0.8f);
+            audioSource.PlayOneShot(zombieInPain, 1f);
         }
     }
 
