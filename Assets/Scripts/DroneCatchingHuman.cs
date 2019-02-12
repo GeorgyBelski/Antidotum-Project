@@ -9,13 +9,13 @@ public class DroneCatchingHuman : MonoBehaviour
     public float speed = 6.5f;
     public bool isLifted = false;
     public bool cancel = false;
-    float path =0f;
+  //  float path =0f;
     bool startCathing = false;
     bool isCached = false;
     bool reloadEnded = true;
 
     
-    Vector3 startLocalPosition , startWorldPosition, endPosition;
+    Vector3 startLocalPosition;
     public GameObject z;
     float startSpeed;
     void Start()
@@ -32,7 +32,7 @@ public class DroneCatchingHuman : MonoBehaviour
             if (!startCathing)
             {
                 startLocalPosition = transform.InverseTransformPoint(catcher.position);
-                startWorldPosition = catcher.position;
+             //   startWorldPosition = catcher.position;
                 startCathing = true;
             }
             if (!isCached)
@@ -44,7 +44,7 @@ public class DroneCatchingHuman : MonoBehaviour
                     targetNeck.root.GetComponent<CapsuleCollider>().enabled = false;
                     targetNeck.root.parent = catcher;
                     isCached = true;
-                    endPosition = catcher.position;
+                //    endPosition = catcher.position;
                     speed = startSpeed;
                 }
                 else if (toTarget.magnitude <= 0.25f && speed > 0.5f)

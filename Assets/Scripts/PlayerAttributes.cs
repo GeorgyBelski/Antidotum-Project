@@ -53,7 +53,7 @@ public class PlayerAttributes : MonoBehaviour, IDamageable
         //buttonComponent.onClick.;
         //Instantiate(gameOverBox, this.transform.position, this.transform.rotation);
         size = lives.GetComponent<RectTransform>();
-        size.sizeDelta = new Vector2(270*livesCount, 240);
+        size.sizeDelta = new Vector2(270 * livesCount, 240);
         //lives.rectTransform.transform.
         health = maxHealth;
         previousHealth = health;
@@ -73,9 +73,9 @@ public class PlayerAttributes : MonoBehaviour, IDamageable
 
     void Update()
     {
-        if(godTime > 0) { 
+        if (godTime > 0) {
             godTime -= Time.deltaTime;
-            healthBarColor.color = Color.Lerp(healthBarColor.color, startHealthBarColor, 1 - godTime*2);
+            healthBarColor.color = Color.Lerp(healthBarColor.color, startHealthBarColor, 1 - godTime * 2);
         }
         else
         {
@@ -85,7 +85,7 @@ public class PlayerAttributes : MonoBehaviour, IDamageable
 
         if (health != previousHealth)
         {
-        //    currentHealsBar.color = new Color(0f,.5f+0.2f*Mathf.Sin(Time.time*12f),0f);
+            //    currentHealsBar.color = new Color(0f,.5f+0.2f*Mathf.Sin(Time.time*12f),0f);
             healthRatio = (float)health / maxHealth;
             currentHealsBar.rectTransform.localScale = new Vector3(healthRatio, 1, 1);
             detectionSphere.radius = health + 20;
@@ -116,7 +116,7 @@ public class PlayerAttributes : MonoBehaviour, IDamageable
     {
         foreach (Image currentBioBar in BioBars)
         {
-            currentBioBar.rectTransform.localScale =  new Vector3(1, retioBio, 1);
+            currentBioBar.rectTransform.localScale = new Vector3(1, retioBio, 1);
         }
         previousBioAmount = bioAmount;
 
@@ -139,32 +139,33 @@ public class PlayerAttributes : MonoBehaviour, IDamageable
         bioAmount = 0;
         antidoteAmount++;
         AntidoteAmountText.text = "" + antidoteAmount;
-        if(antidoteAmount == 1)
+        if (antidoteAmount == 1)
             antidoteImage.color = Color.white;
     }
 
     public void RemoveAntidote() {
-        if(antidoteAmount > 0)
+        if (antidoteAmount > 0)
         {
             antidoteAmount--;
             AntidoteAmountText.text = "" + antidoteAmount;
             if (antidoteAmount == 0)
                 antidoteImage.color = new Color(0.3f, 0.3f, 0.3f);
-        }   
+        }
     }
 
-    public void ApplyDamage(int value)
+    public void ApplyDamage(int value, Vector3 point, Vector3 direction)
     {
         if (godTime >= 0)
         {
             value = 0;
         }
         health -= value;
-        if(health > maxHealth)
+     /* if (health > maxHealth)
         {
             health = maxHealth;
         }
-        if(health <= 0)
+        */
+        if (health <= 0)
         {
             godTime = 2;
             livesCount -= 1;
@@ -179,12 +180,20 @@ public class PlayerAttributes : MonoBehaviour, IDamageable
                 //gameText.color = new Color(gameText.color.r, gameText.color.g, gameText.color.b, 255);
                 Destroy(gameObject);
                 //this.transform.position = new Vector3(this.transform.position.x, this.transform.position.y-3, this.transform.position.z);
-                
+
 
             }
-       
+
         }
-        
+
+    }
+    public void Heal(int value)
+    {
+        health += value;
+        if (health > maxHealth)
+        {
+            health = maxHealth;
+        }
     }
 
     public float GetHealthRatio()

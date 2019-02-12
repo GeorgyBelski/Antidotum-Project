@@ -17,13 +17,13 @@ public class Zombie_script : MonoBehaviour
     public bool move = false;
     public float distanceToTarget;
 
-    private GameObject player;
+ //   private GameObject player;
     private float startSpeed;
     Test_zombie_atributes zombieAttributes;
 
     void Start()
     {
-        player = GameObject.Find("Player");
+     //   player = GameObject.Find("Player");
         zombieAttributes = GetComponent<Test_zombie_atributes>();
     }
 

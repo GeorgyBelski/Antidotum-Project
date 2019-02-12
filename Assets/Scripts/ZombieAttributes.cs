@@ -31,8 +31,9 @@ public class ZombieAttributes : MonoBehaviour, IDamageable
     
     new Renderer renderer;
     private float timeRangeToSound;
-    bool chengeMaterial = false;
-    
+//    bool chengeMaterial = false;
+    Bleeding bleeding;
+
 
 
     void Start()
@@ -47,6 +48,7 @@ public class ZombieAttributes : MonoBehaviour, IDamageable
         currentHealsBar = gameObject.transform.Find("Canvas_Health/Image_Health_Bar").GetComponent<Image>();
         currentHealsBar.rectTransform.localScale = new Vector3(1, 1, 1);
         healthRatio = 1f;
+        bleeding = GetComponent<Bleeding>();
     }
 
     void Update()
@@ -94,7 +96,7 @@ public class ZombieAttributes : MonoBehaviour, IDamageable
         if (!isCured) {
             isCured = true;
             renderer.sharedMaterial = curedMaterial;
-            chengeMaterial = true;
+        //    chengeMaterial = true;
             var sc = gameObject.AddComponent<SphereCollider>();
             sc.center += new Vector3(0f,5f,0f);
             sc.radius = 16f;
@@ -106,9 +108,14 @@ public class ZombieAttributes : MonoBehaviour, IDamageable
         }
     }
 
-    public void ApplyDamage(int value)
+    public void ApplyDamage(int value, Vector3 point, Vector3 direction )
     {
         health -= value;
+        if (bleeding)
+        {
+            bleeding.BleedByHit(point, direction);
+        }
+        
     }
 
     public void getSound()

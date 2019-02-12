@@ -213,7 +213,7 @@ public class PlayerShooting : MonoBehaviour
             if (zAttributes)
             {
                 int damage = 20;
-                zAttributes.ApplyDamage(damage);
+                zAttributes.ApplyDamage(damage, shootHit.point, shootRay.direction);
             }
             gunLine.SetPosition(1, shootHit.point);
 

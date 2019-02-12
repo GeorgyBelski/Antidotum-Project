@@ -6,14 +6,14 @@ public class AntidoteBullet1 : MonoBehaviour
 {
     public static int floorLayer = 9;
     public AudioClip wizzing;
-    private AudioSource audioSource;
+//    private AudioSource audioSource;
     public float speed = 50f;
     public float life_time = 1.3f;
     Rigidbody rb;
 
     void Start()
     {
-        audioSource = GetComponent<AudioSource>();
+    //    audioSource = GetComponent<AudioSource>();
         rb = GetComponent<Rigidbody>();
         rb.velocity = transform.forward * speed;
         rb.useGravity = false;

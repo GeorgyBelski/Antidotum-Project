@@ -27,7 +27,7 @@ public class HealPack : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            collision.gameObject.SendMessage("ApplyDamage", -heal, SendMessageOptions.DontRequireReceiver);
+            collision.gameObject.SendMessage("Heal", heal, SendMessageOptions.DontRequireReceiver);
             Destroy(gameObject);
         }
 
