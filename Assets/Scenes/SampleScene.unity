@@ -14525,7 +14525,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 541686643, guid: d63f8213c6953e44981104a36d2a8d46, type: 3}
       propertyPath: InfinityAntidote
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4002841490613671658, guid: d63f8213c6953e44981104a36d2a8d46,
         type: 3}

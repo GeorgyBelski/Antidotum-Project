@@ -4,18 +4,26 @@ using UnityEngine;
 
 public class Bleeding : MonoBehaviour
 {
-    ParticleSystem hitPartocles;
+    ParticleSystem hitParticles;
+    ParticleSystem.VelocityOverLifetimeModule velocity;
 
     void Start()
     {
-        hitPartocles =GetComponentInChildren<ParticleSystem>();
+        hitParticles = GetComponentInChildren<ParticleSystem>();
     }
 
     public void BleedByHit(Vector3 position, Vector3 direction)
     {
-        if (hitPartocles) {
-            hitPartocles.transform.position = position;
-            hitPartocles.Play();
+        if (hitParticles) {
+            hitParticles.transform.position = position;
+
+            velocity = hitParticles.velocityOverLifetime;
+            velocity.x = direction.x*10f;
+            velocity.z = direction.z*10f;
+            hitParticles.Play();
+
         }
     }
+
+
 }

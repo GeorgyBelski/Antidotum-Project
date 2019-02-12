@@ -34,7 +34,7 @@ public class ZombieDoDamage : MonoBehaviour
             {
                 damageable = zScript.enemy.GetComponent<PlayerAttributes>();
             }
-            damageable.ApplyDamage(15,Vector3.up, Vector3.zero);
+            damageable.ApplyDamage(15, zScript.enemy.transform.position + Vector3.up, Vector3.zero);
         }
     }
 }
