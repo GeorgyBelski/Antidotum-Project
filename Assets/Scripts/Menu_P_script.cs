@@ -51,9 +51,12 @@ public class Menu_P_script : MonoBehaviour
     }
     public static void RestClick()
     {
+        HumanManager.humanList.Clear();
+        HumanManager.savedPeopleNumber = 0;
         //SceneManager.LoadScene(scenePaths[0], LoadSceneMode.Single);
         SceneManager.LoadScene("SampleScene");
         Time.timeScale = 1f;
+        
         //if()
         //canvas.transform.position = new Vector3(1500, canvas.transform.position.y, canvas.transform.position.z);
         //Time.timeScale = 1f;

@@ -37,6 +37,7 @@ public class PlayerShooting : MonoBehaviour
     private AudioSource audioSource;
 
     public Transform gun;
+    public Vector3 pistolScale , rifleScale, pistoleAngle, rifleAngle;
     public GameObject bulletPrefab;
     public GameObject antidoteBulletPrefab;
 
@@ -58,10 +59,16 @@ public class PlayerShooting : MonoBehaviour
     LineRenderer gunLine;
     float effectDisplayTime = 0.6f;
     PlayerAttributes pAttributes;
+    Animator animator;
 
 
     void Start()
     {
+        animator = GetComponent<Animator>();
+        pistolScale = gun.localScale;
+        pistoleAngle = gun.localEulerAngles;
+        rifleScale = new Vector3(pistolScale.x, pistolScale.y, 2.6f);
+        rifleAngle = new Vector3(-253f, 59f, 170f);
         realrifleBulletAtAll = rifleBulletAtAll;
         reloadRifleTimeLeft = reloadRifleTime;
         realRifleBulletInClip = rifleBulletInClip;
@@ -109,10 +116,16 @@ public class PlayerShooting : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
             type = 1;
+            animator.SetInteger("Weapon", 1);
+            gun.localScale = pistolScale;
+            gun.localEulerAngles = pistoleAngle;
         }
         if (Input.GetKeyDown(KeyCode.Alpha2))
         {
             type = 2;
+            animator.SetInteger("Weapon", 2);
+            gun.localScale = rifleScale;
+            gun.localEulerAngles = rifleAngle;
         }
         if (reloadbool)
         {
